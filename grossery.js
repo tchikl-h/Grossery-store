@@ -26,26 +26,28 @@ let nbDays = 0;
 
 function main() {
   document.addEventListener('DOMContentLoaded', init);
-  generateWeekVegetables();
-  selectCurrentVegetable();
 }
 
 function start() {
   playAudio('music.wav', 0.05);
   displayMainButtons();
   document.getElementById('complete-treadmill').classList.add("treadmill-animation-in");
+  hiddenBackgroundVegetable('right')
 }
 
 function init() {
   updateHTML('money', money + '$');
   updateDate();
+  generateWeekVegetables();
+  selectCurrentVegetable();
 }
 
 async function endDay(idAction) {
   document.getElementById('complete-treadmill').classList.remove("treadmill-animation-in");
   document.getElementById('complete-treadmill').offsetWidth
   document.getElementById('complete-treadmill').classList.add("treadmill-animation-out");
-  await sleep(3000)
+  await sleep(3000);
+  displayBackgroundVegetable('left')
   document.getElementById('complete-treadmill').style.left = '-150%';
   document.getElementById('complete-treadmill').classList.remove("treadmill-animation-out");
   document.getElementById('complete-treadmill').classList.add("treadmill-animation-in");
@@ -106,15 +108,19 @@ function gameOver() {
 // ___ GENERATION FUNCTIONS ___
 
 function generateWeekVegetables() {
-  console.log('______________Generate week vegetables______________')
+  console.log('______________Generate week vegetables______________');
+  hiddenAllBackgroundLeft();
   weekVegetables = [];
   for (let i = 0; i < 7; i++) {
     const randomVegetable = allVegetables[getRandomInt(allVegetables.length)];
     weekVegetables.push({
       id: randomVegetable.id,
+      srcImg: randomVegetable.srcImg,
       weekId: i,
       isPassed: false
     });
+    document.getElementById(`fruit-background-right${i+1}`).style.visibility = 'visible';
+    document.getElementById(`fruit-background-right${i+1}`).src = `./images/fruits/${randomVegetable.srcImg}1.png`;
   }
   console.log(weekVegetables)
 }
@@ -122,6 +128,8 @@ function generateWeekVegetables() {
 function selectCurrentVegetable() {
   const avaibleVegetables = weekVegetables.filter(_vege => _vege.isPassed == false);
   currentVegetable = avaibleVegetables[getRandomInt(avaibleVegetables.length)];
+  document.getElementById('current-vegetable').src = `./images/fruits/${currentVegetable.srcImg}1.png`;
+  hiddenBackgroundVegetable('right');
   console.log(`______________ NEW CURRENT VEGE ______________`)
   console.log(currentVegetable)
 }
@@ -215,6 +223,23 @@ function displayPromiseButtons() {
 
 function updateHTML(id, value) {
   document.getElementById(id).innerHTML = value;
+}
+
+function displayBackgroundVegetable(side) {
+  document.getElementById(`fruit-background-${side}${currentVegetable.weekId+1}`).style.visibility = 'visible';
+  document.getElementById(`fruit-background-${side}${currentVegetable.weekId+1}`).src = `./images/fruits/${currentVegetable.srcImg}1.png`;
+}
+
+function hiddenBackgroundVegetable(side) {
+  document.getElementById(`fruit-background-${side}${currentVegetable.weekId+1}`).style.visibility = 'hidden';
+  delete document.getElementById(`fruit-background-${side}${currentVegetable.weekId+1}`).src;
+}
+
+function hiddenAllBackgroundLeft() {
+  for (let i = 1; i <= 7; i++) {
+    document.getElementById(`fruit-background-left${i}`).style.visibility = 'hidden';
+    delete document.getElementById(`fruit-background-left${i}`).src;
+  }
 }
  
 // ___ TOOLS FUNCTION ___

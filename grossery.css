@@ -1,3 +1,7 @@
+html {
+  overflow: hidden;
+}
+
 .date {
   position: absolute;
   margin-left: auto;
@@ -33,7 +37,7 @@
     left: -80%;
   }
   100% {
-    left: 0%;
+    left: -20%;
   }
 }
 
@@ -42,21 +46,9 @@
     left: -80%;
   }
   100% {
-    left: 0%;
+    left: -20%;
   }
 }
-
-/* @-webkit-keyframes slideOut {
-  100% {
-    left: 900;
-  }
-}
-
-@keyframes slideOut {
-  100% {
-    left: 900;
-  }
-} */
 
 .shelves {
   height: 500px;
@@ -77,10 +69,87 @@
 }
 
 .fruit {
-  margin-top: -350px;
+  margin-top: -650px;
   padding-left: 40%;
-  height: 300px;
-  width: 300px;
+  height: 500px;
+  width: 500px;
+}
+
+.fruit-background {
+  position: absolute;
+  visibility: hidden;
+  height: 80px;
+  width: 80px;
+}
+
+#fruit-background-left1 {
+  left: 160px;
+  top: 64px;
+}
+
+#fruit-background-left2 {
+  left: 460px;
+  top: 64px;
+}
+
+#fruit-background-left3 {
+  left: 260px;
+  top: 167px;
+}
+
+#fruit-background-left4 {
+  left: 200px;
+  top: 267px;
+}
+
+#fruit-background-left5 {
+  left: 490px;
+  top: 267px;
+}
+
+#fruit-background-left6 {
+  left: 360px;
+  top: 367px;
+}
+
+#fruit-background-left7 {
+  left: 540px;
+  top: 367px;
+}
+
+#fruit-background-right1 {
+  right: 289px;
+  top: 75px;
+}
+
+#fruit-background-right2 {
+  right: 460px;
+  top: 75px;
+}
+
+#fruit-background-right3 {
+  right: 260px;
+  top: 175px;
+}
+
+#fruit-background-right4 {
+  right: 200px;
+  top: 278px;
+}
+
+#fruit-background-right5 {
+  right: 490px;
+  top: 278px;
+}
+
+#fruit-background-right6 {
+  right: 360px;
+  top: 367px;
+}
+
+#fruit-background-right7 {
+  right: 540px;
+  top: 367px;
 }
 
 .treadmill2 {
@@ -96,22 +165,11 @@
 }
 
 .treadmill-animation-out {
-  -webkit-animation: slide-out 0.5s forwards;
+  /* -webkit-animation: slide-out 0.5s forwards; */
   -webkit-animation-delay: 0s;
   animation: slide-out 5s forwards;
   animation-delay: 0s;
 }
-
-/* .treadmill-animation-out {
-  height: 200px;
-  width: 3906px;
-  position: absolute;
-  left: -900px;
-  -webkit-animation: slide 0.5s forwards;
-  -webkit-animation-delay: 2s;
-  animation: slide 3s forwards;
-  animation-delay: 2s;
-} */
 
 .buttons {
   display: flex;
