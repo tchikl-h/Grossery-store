@@ -117,7 +117,7 @@ function getAllVegetables() {
     {
       "id": 4,
       "name": "Brocoli",
-      "srcImg": "carot",
+      "srcImg": "brocoli",
       "isUnique": false,
       "hate": 50,
       "intro": [
