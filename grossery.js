@@ -113,9 +113,9 @@ async function nextDay() {
   document.getElementById('between-days').style.display = 'block';
   document.getElementById('week-nb').innerHTML= `Week ${Math.floor(nbDays / 7) + 1}`;
   document.getElementById('weekday').innerHTML= weekdays[nbDays % 7];
-  document.getElementById('complete-treadmill').style.right = '-150%';
+  document.getElementById('complete-treadmill').style.left = '-150%';
   document.getElementById('complete-treadmill').classList.remove("treadmill-animation-out");
-  await sleep(3000);
+  await sleep(1500);
   while (isTalking) {
     console.log(isTalking)
     await sleep(100);
