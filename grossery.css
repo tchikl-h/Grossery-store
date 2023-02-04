@@ -2,6 +2,7 @@ html {
   overflow: hidden;
   font-family: 'Roboto', sans-serif;
   color: white;
+  text-transform: uppercase;
 }
 
 .date {
@@ -11,7 +12,6 @@ html {
   left: 0;
   right: 0;
   text-align: center;
-  text-transform: uppercase;
 }
 
 @keyframes slidein {
@@ -268,4 +268,23 @@ body {
   height: 20px;
   background-color: #ee5253;
   width: 50%;
+}
+
+#between-days {
+  display: none;
+  width: 1920px;
+  height: 1020px;
+  background: black;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+}
+
+#weekday {
+  font-size: 96px;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
 }

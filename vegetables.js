@@ -2,16 +2,11 @@ function getAllVegetables() {
   return [
     {
       "id": 1,
-      "name": "Banane",
-      "srcImg": "banana",
+      "nameFR": "Banane",
+      "name": "banana",
       "isUnique": false,
       "hate": 50,
-      "intro": [
-        {
-          "text": "",
-          "sound": ""
-        }
-      ],
+      "firstAppear": true,
       "promises": [
         {
           "text": "Rrrrh ! Le saligot qui va passer après moi me doit de la thune ! Mange le tiens ! Ça lui fera les graines",
@@ -40,16 +35,11 @@ function getAllVegetables() {
     },
     {
       "id": 2,
-      "name": "Carotte",
-      "srcImg": "carot",
+      "nameFR": "Carotte",
+      "name": "carot",
       "isUnique": false,
       "hate": 50,
-      "intro": [
-        {
-          "text": "",
-          "sound": ""
-        }
-      ],
+      "firstAppear": true,
       "promises": [
         {
           "text": "J’suis dans la sauce, je dois de la thune à la prochaine banane que tu vas voir. Si tu le vois, vends le, je ferais n’importe quoi. fait vite, tu as 3 jours !",
@@ -79,16 +69,11 @@ function getAllVegetables() {
     },
     {
       "id": 3,
-      "name": "Aubergine",
-      "srcImg": "banana",
+      "nameFR": "Aubergine",
+      "name": "pedro",
       "isUnique": false,
       "hate": 50,
-      "intro": [
-        {
-          "text": "",
-          "sound": ""
-        }
-      ],
+      "firstAppear": true,
       "promises": [
         {
           "text": "Ola seniorita, rend moi un service, mange le prochain comme moi, ça lui fera plaisir, je te laisse 72h",
@@ -116,16 +101,11 @@ function getAllVegetables() {
     },
     {
       "id": 4,
-      "name": "Brocoli",
-      "srcImg": "brocoli",
+      "nameFR": "Brocoli",
+      "name": "brocoli",
       "isUnique": false,
       "hate": 50,
-      "intro": [
-        {
-          "text": "",
-          "sound": ""
-        }
-      ],
+      "firstAppear": true,
       "promises": [
         {
           "text": "",

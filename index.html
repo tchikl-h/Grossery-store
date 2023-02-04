@@ -11,60 +11,65 @@
     <link rel="stylesheet" href="./components/button/button.css" />
   </head>
   <body>
-    <h2 id="date" class="date"></h2>
-    <img class="vegetable-background" id="vegetable-background-left1"/>
-    <img class="vegetable-background" id="vegetable-background-left2"/>
-    <img class="vegetable-background" id="vegetable-background-left3"/>
-    <img class="vegetable-background" id="vegetable-background-left4"/>
-    <img class="vegetable-background" id="vegetable-background-left5"/>
-    <img class="vegetable-background" id="vegetable-background-left6"/>
-    <img class="vegetable-background" id="vegetable-background-left7"/>
-    <img class="vegetable-background" id="vegetable-background-right1"/>
-    <img class="vegetable-background" id="vegetable-background-right2"/>
-    <img class="vegetable-background" id="vegetable-background-right3"/>
-    <img class="vegetable-background" id="vegetable-background-right4"/>
-    <img class="vegetable-background" id="vegetable-background-right5"/>
-    <img class="vegetable-background" id="vegetable-background-right6"/>
-    <img class="vegetable-background" id="vegetable-background-right7"/>
-    <div class="merge">
-      <img id="shelves" class="shelves" src="./assets/images/bg.png" />
-      <div id="dialog" class="dialog"></div>
-      <div class="treadmill"></div>
-      <div id="complete-treadmill" class="treadmill2">
-        <img
-          id="treadmill"
-          class="treadmill treadmill-fix"
-          src="./assets/images/treadmill.png"
-        >
-          <img id="current-vegetable" class="vegetable">
+    <div id="main-game">
+      <h2 id="date" class="date"></h2>
+      <img class="vegetable-background" id="vegetable-background-left1"/>
+      <img class="vegetable-background" id="vegetable-background-left2"/>
+      <img class="vegetable-background" id="vegetable-background-left3"/>
+      <img class="vegetable-background" id="vegetable-background-left4"/>
+      <img class="vegetable-background" id="vegetable-background-left5"/>
+      <img class="vegetable-background" id="vegetable-background-left6"/>
+      <img class="vegetable-background" id="vegetable-background-left7"/>
+      <img class="vegetable-background" id="vegetable-background-right1"/>
+      <img class="vegetable-background" id="vegetable-background-right2"/>
+      <img class="vegetable-background" id="vegetable-background-right3"/>
+      <img class="vegetable-background" id="vegetable-background-right4"/>
+      <img class="vegetable-background" id="vegetable-background-right5"/>
+      <img class="vegetable-background" id="vegetable-background-right6"/>
+      <img class="vegetable-background" id="vegetable-background-right7"/>
+      <div class="merge">
+        <img id="shelves" class="shelves" src="./assets/images/bg.png" />
+        <!-- <div id="dialog" class="dialog"></div> -->
+        <div class="treadmill"></div>
+        <div id="complete-treadmill" class="treadmill2">
+          <img
+            id="treadmill"
+            class="treadmill treadmill-fix"
+            src="./assets/images/treadmill.png"
+          >
+            <img id="current-vegetable" class="vegetable">
+            </img>
           </img>
-        </img>
-      </div>
-      <!-- <img
-        id="treadmill"
-        class="treadmill treadmill-animation-out"
-        src="./assets/images/treadmill.jpg"
-      /> -->
-    </div>
-    <div id="buttons" class="buttons">
-      <button class="button" id="play" onclick="start()">Commencer</button>
-    </div>
-    <div class="bars">
-      <div class="mentalHealth">
-        <div class="bar-title">Santé mentale</div>
-        <div class="progress">
-          <span id="mentalHealth" class="percent">100%</span>
-          <div id="mentalHealthBar" class="bar-red"></div>
         </div>
+        <!-- <img
+          id="treadmill"
+          class="treadmill treadmill-animation-out"
+          src="./assets/images/treadmill.jpg"
+        /> -->
       </div>
-      <div id="money">100$</div>
-      <div class="riot">
-        <div class="bar-title">Rebellion</div>
-        <div class="progress">
-          <span id="avgHate" class="percent">50%</span>
-          <div id="avgHateBar" class="bar-blue"></div>
+      <div id="buttons" class="buttons">
+        <button class="button" id="play" onclick="start()">Commencer</button>
+      </div>
+      <div class="bars">
+        <div class="mentalHealth">
+          <div class="bar-title">Santé mentale</div>
+          <div class="progress">
+            <span id="mentalHealth" class="percent">100%</span>
+            <div id="mentalHealthBar" class="bar-red"></div>
+          </div>
         </div>
-      </div>  
+        <div id="money">100$</div>
+        <div class="riot">
+          <div class="bar-title">Rebellion</div>
+          <div class="progress">
+            <span id="avgHate" class="percent">50%</span>
+            <div id="avgHateBar" class="bar-blue"></div>
+          </div>
+        </div>  
+      </div>
+    </div>
+    <div id="between-days">
+      <div id="weekday"></div>
     </div>
   </body>
 </html>

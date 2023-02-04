@@ -34,11 +34,32 @@ async function start() {
   document.getElementById('complete-treadmill').classList.add("treadmill-animation-in");
   hiddenBackgroundVegetable('right');
   await sleep(5000);
-  document.getElementById('dialog').style.visibility = 'visible';
-  const message = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.`
-  for (let i = 0; i < message.length; i++) {
-    document.getElementById('dialog').innerHTML += message.charAt(i);
-    await sleep(30);
+  // document.getElementById('dialog').style.visibility = 'visible';
+  playVoice();
+  // const message = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.`
+  // for (let i = 0; i < message.length; i++) {
+  //   document.getElementById('dialog').innerHTML += message.charAt(i);
+  //   await sleep(30);
+  // }
+}
+
+function playVoice() {
+  console.log(' * * * * PLAY VOICE * * * *')
+  const _vege = allVegetables.find(findVege);
+  console.log(_vege);
+  if (_vege.firstAppear) {
+    console.log('FIRST APPEAR')
+    playAudio(`${_vege.name}-intro.mp3`, 1)
+    _vege.firstAppear = false;
+  } else {
+    console.log(_vege.hate);
+    if (_vege.hate < 33) {
+      playAudio(`${_vege.name}-nice.mp3`, 1)
+    } else if (_vege.hate < 66) {
+      playAudio(`${_vege.name}-neutral.mp3`, 1)
+    } else {
+      playAudio(`${_vege.name}-bad.mp3`, 1)
+    }
   }
 }
 
@@ -52,20 +73,19 @@ function init() {
 }
 
 async function endDay(idAction) {
+  if (idAction === 1 || idAction === 2) {
+    playAudio(`${allVegetables.find(findVege).name}-dead.mp3`, 1);
+  } else if (idAction === 0) {
+    playAudio(`${allVegetables.find(findVege).name}-money.mp3`, 1);
+  }
   document.getElementById('complete-treadmill').classList.remove("treadmill-animation-in");
   document.getElementById('complete-treadmill').offsetWidth
   document.getElementById('complete-treadmill').classList.add("treadmill-animation-out");
   await sleep(3000);
   displayBackgroundVegetable('left')
-  document.getElementById('complete-treadmill').style.left = '-150%';
-  document.getElementById('complete-treadmill').classList.remove("treadmill-animation-out");
-  document.getElementById('complete-treadmill').classList.add("treadmill-animation-in");
-  console.log('______________End Day______________')
   weekVegetables[currentVegetable.weekId].isPassed = true;
   checkConditionPromise(idAction);
   checkAllPromises();
-  console.log('promises at end:' + JSON.stringify(promises))
-  console.log(`MENTAL HEALTH ${mentalHealth} | AVGHATE ${avgHate} | MONEY ${money}`)
   if (mentalHealth <= 0 || avgHate >= 100) {
     gameOver();
   } else {
@@ -73,7 +93,7 @@ async function endDay(idAction) {
   }
 }
 
-function nextDay() {
+async function nextDay() {
   setMentalHealth(mentalHealth);
   updateHTML("money", `${money}$`);
   nbDays++;
@@ -82,6 +102,14 @@ function nextDay() {
     generateWeekVegetables();
   }
   selectCurrentVegetable();
+  document.getElementById('between-days').style.display = 'block';
+  document.getElementById('weekday').innerHTML= `Week ${Math.floor(nbDays / 7) + 1}, ${weekdays[nbDays % 7]}`;
+  document.getElementById('complete-treadmill').style.left = '-150%';
+  document.getElementById('complete-treadmill').classList.remove("treadmill-animation-out");
+  await sleep(1500);
+  document.getElementById('between-days').style.display = 'none';
+  document.getElementById('complete-treadmill').classList.add("treadmill-animation-in");
+  playVoice();
 }
 
 function checkAllPromises() {
@@ -101,14 +129,11 @@ function checkAllPromises() {
 }
 
 function checkConditionPromise(action) {
-  console.log('______________checkConditionPromise______________');
-  console.log(JSON.stringify(promises));
   for (const promise of promises) {
     if (promise.cond.action === action && promise.cond.vegetables.includes(currentVegetable.id)) {
       promise.cond.vegetables.splice(promise.cond.vegetables.indexOf(currentVegetable.id), 1);
     }
   }
-  console.log(JSON.stringify(promises));
 }
 
 function gameOver() {
@@ -118,21 +143,19 @@ function gameOver() {
 // ___ GENERATION FUNCTIONS ___
 
 function generateWeekVegetables() {
-  console.log('______________Generate week vegetables______________');
   hiddenAllBackgroundLeft();
   weekVegetables = [];
   for (let i = 0; i < 7; i++) {
     const randomVegetable = allVegetables[getRandomInt(allVegetables.length)];
     weekVegetables.push({
       id: randomVegetable.id,
-      srcImg: randomVegetable.srcImg,
+      srcImg: randomVegetable.name,
       weekId: i,
       isPassed: false
     });
     document.getElementById(`vegetable-background-right${i+1}`).style.visibility = 'visible';
-    document.getElementById(`vegetable-background-right${i+1}`).src = `./assets/images/vegetables/${randomVegetable.srcImg}1.png`;
+    document.getElementById(`vegetable-background-right${i+1}`).src = `./assets/images/vegetables/${randomVegetable.name}1.png`;
   }
-  console.log(weekVegetables)
 }
 
 function selectCurrentVegetable() {
@@ -140,13 +163,14 @@ function selectCurrentVegetable() {
   currentVegetable = avaibleVegetables[getRandomInt(avaibleVegetables.length)];
   document.getElementById('current-vegetable').src = `./assets/images/vegetables/${currentVegetable.srcImg}1.png`;
   hiddenBackgroundVegetable('right');
-  console.log(`______________ NEW CURRENT VEGE ______________`)
-  console.log(currentVegetable)
 }
 
 // ___ INTERACTION FUNCTIONS ___
 
 function bribe() {
+  if (money < 20) {
+    return;
+  }
   setHate(-10);
   setMoney(-10);
   endDay(0)
@@ -166,8 +190,6 @@ function eat() {
 
 function talk() {
   currentPromise = allVegetables.find(findVege).promises.shift();
-  console.log(currentPromise);
-  console.log(allVegetables.find(findVege).promises)
   checkConditionPromise(3);
   displayPromiseButtons();
 }
@@ -187,8 +209,6 @@ function refusePromise() {
 // ____ SETTERS ___
 
 function setHate(value) {
-  console.log(setHate)
-  console.log(`_____ SET HATE ____ : ${value}`)
   let newHate = allVegetables.find(findVege).hate;
   newHate += value;
   if (newHate < 0) {
@@ -203,7 +223,6 @@ function setHate(value) {
   document
     .getElementById("avgHateBar")
     .setAttribute("style", `width:${avgHate}%`);
-  console.log(`NEW AVG HATE: ${avgHate}`);
 }
 
 function setMoney(value) {
