@@ -215,17 +215,17 @@ function displayMainButtons() {
   updateHTML(
     "buttons",
     `
-    <button id="birbe" onclick="bribe()">Soudoyer</button>
-    <button id="sell" onclick="sell()">Vendre</button>
-    <button id="talk" onclick="talk()">Parler</button>
-    <button id="eat" onclick="eat()">Manger</button>
+    <button class="button" id="birbe" onclick="bribe()">Soudoyer</button>
+    <button class="button" id="sell" onclick="sell()">Vendre</button>
+    <button class="button" id="talk" onclick="talk()">Parler</button>
+    <button class="button" id="eat" onclick="eat()">Manger</button>
   `);
 }
 
 function displayPromiseButtons() {
   updateHTML('buttons', `
-    <button id="accept-promise" onclick="acceptPromise()">Yes</button>
-    <button id="refuse-promise" onclick="refusePromise()">No</button>
+    <button class="button" id="accept-promise" onclick="acceptPromise()">Yes</button>
+    <button class="button" id="refuse-promise" onclick="refusePromise()">No</button>
   `);
 }
 
