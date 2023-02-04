@@ -4,9 +4,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 <script src="vegetables.js"></script>
 <script src="grossery.js"></script>
+<script src="./components/button/button.js"></script>
 <html>
   <head>
     <link rel="stylesheet" href="./grossery.css" />
+    <link rel="stylesheet" href="./components/button/button.css" />
   </head>
   <body>
     <h2 id="date" class="date"></h2>
@@ -45,24 +47,24 @@
       /> -->
     </div>
     <div id="buttons" class="buttons">
-      <button id="play" onclick="start()">Commencer</button>
+      <button class="button" id="play" onclick="start()">Commencer</button>
     </div>
     <div class="bars">
       <div class="mentalHealth">
-        <div>Santé mentale</div>
+        <div class="bar-title">Santé mentale</div>
         <div class="progress">
           <span id="mentalHealth" class="percent">100%</span>
           <div id="mentalHealthBar" class="bar-red"></div>
         </div>
       </div>
+      <div id="money">100$</div>
       <div class="riot">
-        <div>Rebellion</div>
+        <div class="bar-title">Rebellion</div>
         <div class="progress">
           <span id="avgHate" class="percent">50%</span>
           <div id="avgHateBar" class="bar-blue"></div>
         </div>
       </div>  
     </div>
-    <div id="money">100$</div>
   </body>
 </html>
