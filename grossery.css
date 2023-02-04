@@ -59,8 +59,9 @@
 }
 
 .face {
-  margin-top: -230px;
-  padding-left: 750px;
+  position: absolute;
+  left: 750px;
+  bottom: 80px;
   height: 100px;
   width: 100px;
 }
