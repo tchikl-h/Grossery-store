@@ -1,0 +1,119 @@
+.date {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+@keyframes slidein {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@-webkit-keyframes slide {
+  100% {
+    left: 0;
+  }
+}
+
+@keyframes slide {
+  100% {
+    left: 0;
+  }
+}
+
+/* @-webkit-keyframes slideOut {
+  100% {
+    left: 900;
+  }
+}
+
+@keyframes slideOut {
+  100% {
+    left: 900;
+  }
+} */
+
+.shelves {
+  height: 500px;
+  width: 1853px;
+}
+
+.treadmill {
+  height: 200px;
+  width: 1853px;
+}
+
+.treadmill-fix {
+  margin-top: -200px;
+}
+
+.hide {
+  display: none;
+}
+
+.face {
+  margin-top: -230px;
+  padding-left: 750px;
+  height: 100px;
+  width: 100px;
+}
+
+.fruit {
+  margin-top: -350px;
+  padding-left: 650px;
+  height: 300px;
+  width: 300px;
+}
+
+.treadmill-animation-in {
+  position: absolute;
+  left: -900px;
+  -webkit-animation: slide 0.5s forwards;
+  -webkit-animation-delay: 2s;
+  animation: slide 3s forwards;
+  animation-delay: 2s;
+}
+
+/* .treadmill-animation-out {
+  height: 200px;
+  width: 3906px;
+  position: absolute;
+  left: -900px;
+  -webkit-animation: slide 0.5s forwards;
+  -webkit-animation-delay: 2s;
+  animation: slide 3s forwards;
+  animation-delay: 2s;
+} */
+
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.bars {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.bar {
+  height: 30px;
+  width: 320px;
+  margin-top: 5px;
+}
+
+.merge {
+  font-size: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
