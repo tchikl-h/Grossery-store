@@ -18,13 +18,31 @@
 
 @-webkit-keyframes slide {
   100% {
-    left: 0;
+    left: -80%;
   }
 }
 
 @keyframes slide {
   100% {
-    left: 0;
+    left: -80%;
+  }
+}
+
+@-webkit-keyframes slide-out {
+  0% {
+    left: -80%;
+  }
+  100% {
+    left: 0%;
+  }
+}
+
+@keyframes slide-out {
+  0% {
+    left: -80%;
+  }
+  100% {
+    left: 0%;
   }
 }
 
@@ -42,12 +60,12 @@
 
 .shelves {
   height: 500px;
-  width: 1853px;
+  width: 100%;
 }
 
 .treadmill {
   height: 200px;
-  width: 1853px;
+  /* width: 1853px; */
 }
 
 .treadmill-fix {
@@ -60,20 +78,27 @@
 
 .fruit {
   margin-top: -350px;
-  padding-left: 650px;
+  padding-left: 40%;
   height: 300px;
   width: 300px;
 }
 
 .treadmill2 {
   position: absolute;
-  left: -900px;
+  left: -150%;
 }
 
 .treadmill-animation-in {
   -webkit-animation: slide 0.5s forwards;
   -webkit-animation-delay: 0s;
   animation: slide 5s forwards;
+  animation-delay: 0s;
+}
+
+.treadmill-animation-out {
+  -webkit-animation: slide-out 0.5s forwards;
+  -webkit-animation-delay: 0s;
+  animation: slide-out 5s forwards;
   animation-delay: 0s;
 }
 

@@ -41,9 +41,13 @@ function init() {
   updateDate();
 }
 
-function endDay(idAction) {
+async function endDay(idAction) {
   document.getElementById('complete-treadmill').classList.remove("treadmill-animation-in");
   document.getElementById('complete-treadmill').offsetWidth
+  document.getElementById('complete-treadmill').classList.add("treadmill-animation-out");
+  await sleep(3000)
+  document.getElementById('complete-treadmill').style.left = '-150%';
+  document.getElementById('complete-treadmill').classList.remove("treadmill-animation-out");
   document.getElementById('complete-treadmill').classList.add("treadmill-animation-in");
   console.log('______________End Day______________')
   weekVegetables[currentVegetable.weekId].isPassed = true;
@@ -58,7 +62,7 @@ function endDay(idAction) {
   }
 }
 
-function nextDay() {
+async function nextDay() {
   updateHTML('money', `${money}$ | mentalHealth ${mentalHealth} | avgHate ${avgHate} | hateCurrentVegetable ${allVegetables.find(findVege).hate}`)
   nbDays++;
   updateDate();
@@ -227,6 +231,10 @@ function playAudio(name, volume) {
   const audio = new Audio(`./sounds/${name}`);
   audio.volume = volume;
   audio.play();
+}
+
+async function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 // ___ CALL MAIN ___
