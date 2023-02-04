@@ -73,9 +73,11 @@ function init() {
 }
 
 async function endDay(idAction) {
-  // if (idAction === 1 || idAction === 2) {
-  //   playAudio(`${allVegetables.find(findVege).name}-dead.pm3`, 1);
-  // }
+  if (idAction === 1 || idAction === 2) {
+    playAudio(`${allVegetables.find(findVege).name}-dead.mp3`, 1);
+  } else if (idAction === 0) {
+    playAudio(`${allVegetables.find(findVege).name}-money.mp3`, 1);
+  }
   document.getElementById('complete-treadmill').classList.remove("treadmill-animation-in");
   document.getElementById('complete-treadmill').offsetWidth
   document.getElementById('complete-treadmill').classList.add("treadmill-animation-out");
