@@ -28,17 +28,23 @@
   }
 }
 
-/* @-webkit-keyframes slideOut {
-  100% {
-    left: 900;
+@-webkit-keyframes slideOut {
+  from {
+    top: 0px;
+  }
+  to {
+    top: 900px;
   }
 }
 
 @keyframes slideOut {
-  100% {
-    left: 900;
+  from {
+    top: 0px;
   }
-} */
+  to {
+    top: 900px;
+  }
+}
 
 .shelves {
   height: 500px;
@@ -65,6 +71,82 @@
   width: 300px;
 }
 
+.fruit-background {
+  position: absolute;
+  height: 80px;
+  width: 80px;
+}
+
+.fruit-background-left1 {
+  left: 160px;
+  top: 64px;
+}
+
+.fruit-background-left2 {
+  left: 460px;
+  top: 64px;
+}
+
+.fruit-background-left3 {
+  left: 260px;
+  top: 167px;
+}
+
+.fruit-background-left4 {
+  left: 200px;
+  top: 267px;
+}
+
+.fruit-background-left5 {
+  left: 490px;
+  top: 267px;
+}
+
+.fruit-background-left6 {
+  left: 360px;
+  top: 367px;
+}
+
+.fruit-background-left7 {
+  left: 540px;
+  top: 367px;
+}
+
+.fruit-background-right1 {
+  right: 289px;
+  top: 75px;
+}
+
+.fruit-background-right2 {
+  right: 460px;
+  top: 75px;
+}
+
+.fruit-background-right3 {
+  right: 260px;
+  top: 175px;
+}
+
+.fruit-background-right4 {
+  right: 200px;
+  top: 278px;
+}
+
+.fruit-background-right5 {
+  right: 490px;
+  top: 278px;
+}
+
+.fruit-background-right6 {
+  right: 360px;
+  top: 367px;
+}
+
+.fruit-background-right7 {
+  right: 540px;
+  top: 367px;
+}
+
 .treadmill2 {
   position: absolute;
   left: -900px;
@@ -77,16 +159,14 @@
   animation-delay: 0s;
 }
 
-/* .treadmill-animation-out {
-  height: 200px;
-  width: 3906px;
+.treadmill-animation-out {
   position: absolute;
-  left: -900px;
-  -webkit-animation: slide 0.5s forwards;
+  left: 0px;
+  -webkit-animation: slideOut 0.5s forwards;
   -webkit-animation-delay: 2s;
   animation: slide 3s forwards;
   animation-delay: 2s;
-} */
+}
 
 .buttons {
   display: flex;
