@@ -63,6 +63,12 @@ function playVoice() {
   }
 }
 
+function playVoiceTalk(promise) {
+  console.log(' * * * * PLAY VOICE TALK * * * *')
+  console.log(promise.sound);
+  playAudio(promise.sound, 1)
+}
+
 function init() {
   updateDate();
   generateWeekVegetables();
@@ -191,6 +197,7 @@ function eat() {
 
 function talk() {
   currentPromise = allVegetables.find(findVege).promises.shift();
+  playVoiceTalk(currentPromise)
   checkConditionPromise(3);
   displayPromiseButtons();
 }
