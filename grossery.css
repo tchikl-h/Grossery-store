@@ -174,18 +174,28 @@
 }
 
 .bars {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .mentalHealth {
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   width: 500px;
+}
+
+.bar-title {
+  margin-top: 5px;
+  margin-right: 10px;
 }
 
 .riot {
   margin-top: 10px;
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   width: 500px;
 }
 
