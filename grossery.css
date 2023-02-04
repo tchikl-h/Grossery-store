@@ -280,8 +280,17 @@ body {
   left: 0%;
 }
 
+#week-nb {
+  font-size: 20px;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
 #weekday {
-  font-size: 96px;
+  font-size: 150px;
   position: absolute;
   top: 45%;
   left: 50%;

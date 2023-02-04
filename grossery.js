@@ -18,6 +18,8 @@ let currentPromise = null;
 // vegetables
 let weekVegetables = [];
 let currentVegetable = null;
+let currentStatAnim = 1;
+let isTalking = false;
 
 // round
 let nbDays = 0;
@@ -32,7 +34,7 @@ async function start() {
   playAudio('music.wav', 0.05);
   displayMainButtons();
   document.getElementById('complete-treadmill').classList.add("treadmill-animation-in");
-  hiddenBackgroundVegetable('right');
+  hiddenBackgroundVegetable('left');
   await sleep(5000);
   // document.getElementById('dialog').style.visibility = 'visible';
   playVoice();
@@ -79,10 +81,10 @@ async function endDay(idAction) {
     playAudio(`${allVegetables.find(findVege).name}-money.mp3`, 1);
   }
   document.getElementById('complete-treadmill').classList.remove("treadmill-animation-in");
-  document.getElementById('complete-treadmill').offsetWidth
+  document.getElementById('complete-treadmill').offsetWidth;
   document.getElementById('complete-treadmill').classList.add("treadmill-animation-out");
   await sleep(3000);
-  displayBackgroundVegetable('left')
+  displayBackgroundVegetable('right')
   weekVegetables[currentVegetable.weekId].isPassed = true;
   checkConditionPromise(idAction);
   checkAllPromises();
@@ -103,12 +105,18 @@ async function nextDay() {
   }
   selectCurrentVegetable();
   document.getElementById('between-days').style.display = 'block';
-  document.getElementById('weekday').innerHTML= `Week ${Math.floor(nbDays / 7) + 1}, ${weekdays[nbDays % 7]}`;
-  document.getElementById('complete-treadmill').style.left = '-150%';
+  document.getElementById('week-nb').innerHTML= `Week ${Math.floor(nbDays / 7) + 1}`;
+  document.getElementById('weekday').innerHTML= weekdays[nbDays % 7];
+  document.getElementById('complete-treadmill').style.right = '-150%';
   document.getElementById('complete-treadmill').classList.remove("treadmill-animation-out");
-  await sleep(1500);
+  await sleep(3000);
+  while (isTalking) {
+    console.log(isTalking)
+    await sleep(100);
+  }
   document.getElementById('between-days').style.display = 'none';
   document.getElementById('complete-treadmill').classList.add("treadmill-animation-in");
+  await sleep(4000);
   playVoice();
 }
 
@@ -153,8 +161,8 @@ function generateWeekVegetables() {
       weekId: i,
       isPassed: false
     });
-    document.getElementById(`vegetable-background-right${i+1}`).style.visibility = 'visible';
-    document.getElementById(`vegetable-background-right${i+1}`).src = `./assets/images/vegetables/${randomVegetable.name}1.png`;
+    document.getElementById(`vegetable-background-left${i+1}`).style.visibility = 'visible';
+    document.getElementById(`vegetable-background-left${i+1}`).src = `./assets/images/vegetables/${randomVegetable.name}1.png`;
   }
 }
 
@@ -162,7 +170,7 @@ function selectCurrentVegetable() {
   const avaibleVegetables = weekVegetables.filter(_vege => _vege.isPassed == false);
   currentVegetable = avaibleVegetables[getRandomInt(avaibleVegetables.length)];
   document.getElementById('current-vegetable').src = `./assets/images/vegetables/${currentVegetable.srcImg}1.png`;
-  hiddenBackgroundVegetable('right');
+  hiddenBackgroundVegetable('left');
 }
 
 // ___ INTERACTION FUNCTIONS ___
@@ -284,8 +292,8 @@ function hiddenBackgroundVegetable(side) {
 
 function hiddenAllBackgroundLeft() {
   for (let i = 1; i <= 7; i++) {
-    document.getElementById(`vegetable-background-left${i}`).style.visibility = 'hidden';
-    delete document.getElementById(`vegetable-background-left${i}`).src;
+    document.getElementById(`vegetable-background-right${i}`).style.visibility = 'hidden';
+    delete document.getElementById(`vegetable-background-right${i}`).src;
   }
 }
  
@@ -303,6 +311,22 @@ function playAudio(name, volume) {
   const audio = new Audio(`./assets/sounds/${name}`);
   audio.volume = volume;
   audio.play();
+  if (volume === 1) {
+    isTalking = true;
+    const interval = setInterval(() => {
+      console.log('BONJOUR')
+      currentStatAnim = (currentStatAnim === 1) ? 2 : 1;
+      console.log(`./assets/images/vegetables/${currentVegetable.srcImg}${currentStatAnim}.png`)
+      document.getElementById('current-vegetable').src = `./assets/images/vegetables/${currentVegetable.srcImg}${currentStatAnim}.png`;
+    }, 200);
+    audio.onended = function() {
+      console.log('C est fini !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+      clearInterval(interval);
+      currentStatAnim = 1;
+      isTalking = false;
+      document.getElementById('current-vegetable').src = `./assets/images/vegetables/${currentVegetable.srcImg}1.png`;
+    };
+  }
 }
 
 async function sleep(ms) {
