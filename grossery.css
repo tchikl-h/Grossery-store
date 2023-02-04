@@ -174,11 +174,19 @@
 }
 
 .bars {
+}
+
+.mentalHealth {
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  width: 500px;
+}
+
+.riot {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 500px;
 }
 
 .bars > * {
@@ -188,12 +196,6 @@
   text-align: center;
 }
 
-.bar {
-  height: 30px;
-  width: 320px;
-  margin-top: 5px;
-}
-
 .merge {
   font-size: 0;
 }
@@ -201,4 +203,28 @@
 body {
   margin: 0;
   padding: 0;
+}
+
+.progress {
+  width: 350px;
+  border: 1px solid black;
+  position: relative;
+  padding: 3px;
+}
+
+.percent {
+  position: absolute;
+  left: 50%;
+}
+
+.bar-red {
+  height: 20px;
+  background-color: #ee5253;
+  width: 100%;
+}
+
+.bar-blue {
+  height: 20px;
+  background-color: #0abde3;
+  width: 50%;
 }

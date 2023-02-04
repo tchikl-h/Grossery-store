@@ -37,7 +37,9 @@ function start() {
 }
 
 function init() {
-  updateHTML('money', money + '$');
+  setMoney(money);
+  setMentalHealth(mentalHealth);
+  setHate(avgHate);
   updateDate();
 }
 
@@ -59,7 +61,8 @@ function endDay(idAction) {
 }
 
 function nextDay() {
-  updateHTML('money', `${money}$ | mentalHealth ${mentalHealth} | avgHate ${avgHate} | hateCurrentVegetable ${allVegetables.find(findVege).hate}`)
+  setMentalHealth(mentalHealth);
+  updateHTML("money", `${money}$`);
   nbDays++;
   updateDate();
   if (nbDays % 7 === 0) {
@@ -76,7 +79,7 @@ function checkAllPromises() {
     } else {
       promise.cond.days--;
       if (promise.cond.days <= 0) {
-        mentalHealth -= promise.punishment;
+        setMentalHealth(mentalHealth - promise.punishment);
         promise.isOver = true;
       }
     }
@@ -138,7 +141,7 @@ function sell() {
 
 function eat() {
   setHate(20);
-  mentalHealth += 10;
+  setMentalHealth(10);
   endDay(2);
 }
 
@@ -176,6 +179,10 @@ function setHate(value) {
   allVegetables.find(findVege).hate = newHate;
   const sum = allVegetables.map(_vege => _vege.hate).reduce((a, b) => a + b, 0);
   avgHate = Math.round(sum / allVegetables.length);
+  updateHTML("avgHate", `${avgHate}%`);
+  document
+    .getElementById("avgHateBar")
+    .setAttribute("style", `width:${avgHate}%`);
   console.log(`NEW AVG HATE: ${avgHate}`);
 }
 
@@ -184,7 +191,18 @@ function setMoney(value) {
   if (money < 0) {
     money = 0;
   }
-  updateHTML('money', `${money}$ | mentalHealth ${mentalHealth} | avgHate ${avgHate} | hateCurrentVegetable ${allVegetables.find(findVege).hate}`)
+  updateHTML("money", `${money}$`);
+}
+
+function setMentalHealth(value) {
+  mentalHealth += value;
+  if (mentalHealth > 100) {
+    mentalHealth = 100;
+  }
+  updateHTML("mentalHealth", `${mentalHealth}%`);
+  document
+    .getElementById("mentalHealthBar")
+    .setAttribute("style", `width:${mentalHealth}%`);
 }
 
 // ___ CHANGE UI FUNCTIONS ____
@@ -194,7 +212,9 @@ function updateDate() {
 }
 
 function displayMainButtons() {
-  updateHTML('buttons', `
+  updateHTML(
+    "buttons",
+    `
     <button id="birbe" onclick="bribe()">Soudoyer</button>
     <button id="sell" onclick="sell()">Vendre</button>
     <button id="talk" onclick="talk()">Parler</button>
