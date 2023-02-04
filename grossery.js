@@ -2,6 +2,8 @@
 
 const allVegetables = getAllVegetables();
 
+const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+
 // ___ GLOBALS ___
 
 // stats
@@ -18,7 +20,7 @@ let weekVegetables = [];
 let currentVegetable = null;
 
 // round
-let nbDays = 1;
+let nbDays = 0;
 
 // ___ MAIN FUNCTIONS ___
 
@@ -28,12 +30,21 @@ function main() {
   selectCurrentVegetable();
 }
 
+function start() {
+  playAudio('music.wav', 0.05);
+  displayMainButtons();
+  document.getElementById('complete-treadmill').classList.add("treadmill-animation-in");
+}
+
 function init() {
-  console.log('I N I T')
-  updateHTML('money', money + '$')
+  updateHTML('money', money + '$');
+  updateDate();
 }
 
 function endDay(idAction) {
+  document.getElementById('complete-treadmill').classList.remove("treadmill-animation-in");
+  document.getElementById('complete-treadmill').offsetWidth
+  document.getElementById('complete-treadmill').classList.add("treadmill-animation-in");
   console.log('______________End Day______________')
   weekVegetables[currentVegetable.weekId].isPassed = true;
   checkConditionPromise(idAction);
@@ -48,7 +59,9 @@ function endDay(idAction) {
 }
 
 function nextDay() {
+  updateHTML('money', `${money}$ | mentalHealth ${mentalHealth} | avgHate ${avgHate} | hateCurrentVegetable ${allVegetables.find(findVege).hate}`)
   nbDays++;
+  updateDate();
   if (nbDays % 7 === 0) {
     generateWeekVegetables();
   }
@@ -112,24 +125,19 @@ function selectCurrentVegetable() {
 // ___ INTERACTION FUNCTIONS ___
 
 function bribe() {
-
-  document.getElementById('treadmill').classList.add("treadmill-animation-in");
-  // document.getElementById('fruit').classList.add("treadmill-animation-in");
-  // document.getElementById('face').classList.add("treadmill-animation-in");
-
   setHate(-10);
   setMoney(-10);
   endDay(0)
 }
 
 function sell() {
-  setHate(10);
+  setHate(20);
   setMoney(10);
   endDay(1);
 }
 
 function eat() {
-  setHate(10);
+  setHate(20);
   mentalHealth += 10;
   endDay(2);
 }
@@ -176,10 +184,14 @@ function setMoney(value) {
   if (money < 0) {
     money = 0;
   }
-  updateHTML('money', money + '$')
+  updateHTML('money', `${money}$ | mentalHealth ${mentalHealth} | avgHate ${avgHate} | hateCurrentVegetable ${allVegetables.find(findVege).hate}`)
 }
 
 // ___ CHANGE UI FUNCTIONS ____
+
+function updateDate() {
+  updateHTML(`date`, `Week ${Math.floor(nbDays / 7) + 1}, ${weekdays[nbDays % 7]}`)
+}
 
 function displayMainButtons() {
   updateHTML('buttons', `
@@ -212,7 +224,7 @@ function getRandomInt(max) {
 }
 
 function playAudio(name, volume) {
-  const audio = new Audio(`./assets/sounds/${name}`);
+  const audio = new Audio(`./sounds/${name}`);
   audio.volume = volume;
   audio.play();
 }
