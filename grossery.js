@@ -26,26 +26,39 @@ let nbDays = 0;
 
 function main() {
   document.addEventListener('DOMContentLoaded', init);
-  generateWeekVegetables();
-  selectCurrentVegetable();
 }
 
-function start() {
+async function start() {
   playAudio('music.wav', 0.05);
   displayMainButtons();
   document.getElementById('complete-treadmill').classList.add("treadmill-animation-in");
+  hiddenBackgroundVegetable('right');
+  await sleep(5000);
+  document.getElementById('dialog').style.visibility = 'visible';
+  const message = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.`
+  for (let i = 0; i < message.length; i++) {
+    document.getElementById('dialog').innerHTML += message.charAt(i);
+    await sleep(30);
+  }
 }
 
 function init() {
+  updateDate();
+  generateWeekVegetables();
+  selectCurrentVegetable();
   setMoney(money);
   setMentalHealth(mentalHealth);
   setHate(avgHate);
-  updateDate();
 }
 
-function endDay(idAction) {
+async function endDay(idAction) {
   document.getElementById('complete-treadmill').classList.remove("treadmill-animation-in");
   document.getElementById('complete-treadmill').offsetWidth
+  document.getElementById('complete-treadmill').classList.add("treadmill-animation-out");
+  await sleep(3000);
+  displayBackgroundVegetable('left')
+  document.getElementById('complete-treadmill').style.left = '-150%';
+  document.getElementById('complete-treadmill').classList.remove("treadmill-animation-out");
   document.getElementById('complete-treadmill').classList.add("treadmill-animation-in");
   console.log('______________End Day______________')
   weekVegetables[currentVegetable.weekId].isPassed = true;
@@ -105,15 +118,19 @@ function gameOver() {
 // ___ GENERATION FUNCTIONS ___
 
 function generateWeekVegetables() {
-  console.log('______________Generate week vegetables______________')
+  console.log('______________Generate week vegetables______________');
+  hiddenAllBackgroundLeft();
   weekVegetables = [];
   for (let i = 0; i < 7; i++) {
     const randomVegetable = allVegetables[getRandomInt(allVegetables.length)];
     weekVegetables.push({
       id: randomVegetable.id,
+      srcImg: randomVegetable.srcImg,
       weekId: i,
       isPassed: false
     });
+    document.getElementById(`vegetable-background-right${i+1}`).style.visibility = 'visible';
+    document.getElementById(`vegetable-background-right${i+1}`).src = `./assets/images/vegetables/${randomVegetable.srcImg}1.png`;
   }
   console.log(weekVegetables)
 }
@@ -121,6 +138,8 @@ function generateWeekVegetables() {
 function selectCurrentVegetable() {
   const avaibleVegetables = weekVegetables.filter(_vege => _vege.isPassed == false);
   currentVegetable = avaibleVegetables[getRandomInt(avaibleVegetables.length)];
+  document.getElementById('current-vegetable').src = `./assets/images/vegetables/${currentVegetable.srcImg}1.png`;
+  hiddenBackgroundVegetable('right');
   console.log(`______________ NEW CURRENT VEGE ______________`)
   console.log(currentVegetable)
 }
@@ -168,6 +187,7 @@ function refusePromise() {
 // ____ SETTERS ___
 
 function setHate(value) {
+  console.log(setHate)
   console.log(`_____ SET HATE ____ : ${value}`)
   let newHate = allVegetables.find(findVege).hate;
   newHate += value;
@@ -232,6 +252,23 @@ function displayPromiseButtons() {
 function updateHTML(id, value) {
   document.getElementById(id).innerHTML = value;
 }
+
+function displayBackgroundVegetable(side) {
+  document.getElementById(`vegetable-background-${side}${currentVegetable.weekId+1}`).style.visibility = 'visible';
+  document.getElementById(`vegetable-background-${side}${currentVegetable.weekId+1}`).src = `./assets/images/vegetables/${currentVegetable.srcImg}1.png`;
+}
+
+function hiddenBackgroundVegetable(side) {
+  document.getElementById(`vegetable-background-${side}${currentVegetable.weekId+1}`).style.visibility = 'hidden';
+  delete document.getElementById(`vegetable-background-${side}${currentVegetable.weekId+1}`).src;
+}
+
+function hiddenAllBackgroundLeft() {
+  for (let i = 1; i <= 7; i++) {
+    document.getElementById(`vegetable-background-left${i}`).style.visibility = 'hidden';
+    delete document.getElementById(`vegetable-background-left${i}`).src;
+  }
+}
  
 // ___ TOOLS FUNCTION ___
 
@@ -244,9 +281,13 @@ function getRandomInt(max) {
 }
 
 function playAudio(name, volume) {
-  const audio = new Audio(`./sounds/${name}`);
+  const audio = new Audio(`./assets/sounds/${name}`);
   audio.volume = volume;
   audio.play();
+}
+
+async function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 // ___ CALL MAIN ___

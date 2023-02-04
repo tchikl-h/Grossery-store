@@ -1,3 +1,9 @@
+html {
+  overflow: hidden;
+  font-family: 'Roboto', sans-serif;
+  color: white;
+}
+
 .date {
   position: absolute;
   margin-left: auto;
@@ -5,6 +11,7 @@
   left: 0;
   right: 0;
   text-align: center;
+  text-transform: uppercase;
 }
 
 @keyframes slidein {
@@ -18,42 +25,42 @@
 
 @-webkit-keyframes slide {
   100% {
-    left: 0;
+    left: -80%;
   }
 }
 
 @keyframes slide {
   100% {
-    left: 0;
+    left: -80%;
   }
 }
 
-@-webkit-keyframes slideOut {
-  from {
-    top: 0px;
+@-webkit-keyframes slide-out {
+  0% {
+    left: -80%;
   }
-  to {
-    top: 900px;
+  100% {
+    left: -20%;
   }
 }
 
-@keyframes slideOut {
-  from {
-    top: 0px;
+@keyframes slide-out {
+  0% {
+    left: -80%;
   }
-  to {
-    top: 900px;
+  100% {
+    left: -20%;
   }
 }
 
 .shelves {
   height: 500px;
-  width: 1853px;
+  width: 100%;
 }
 
 .treadmill {
   height: 200px;
-  width: 1853px;
+  /* width: 1853px; */
 }
 
 .treadmill-fix {
@@ -64,92 +71,108 @@
   display: none;
 }
 
-.fruit {
-  margin-top: -350px;
-  padding-left: 650px;
-  height: 300px;
-  width: 300px;
+.vegetable {
+  margin-top: -650px;
+  padding-left: 40%;
+  height: 500px;
+  width: 500px;
 }
 
-.fruit-background {
+.vegetable-background {
   position: absolute;
+  visibility: hidden;
   height: 80px;
   width: 80px;
 }
 
-.fruit-background-left1 {
+#vegetable-background-left1 {
   left: 160px;
   top: 64px;
 }
 
-.fruit-background-left2 {
+#vegetable-background-left2 {
   left: 460px;
   top: 64px;
 }
 
-.fruit-background-left3 {
+#vegetable-background-left3 {
   left: 260px;
   top: 167px;
 }
 
-.fruit-background-left4 {
+#vegetable-background-left4 {
   left: 200px;
   top: 267px;
 }
 
-.fruit-background-left5 {
+#vegetable-background-left5 {
   left: 490px;
   top: 267px;
 }
 
-.fruit-background-left6 {
+#vegetable-background-left6 {
   left: 360px;
   top: 367px;
 }
 
-.fruit-background-left7 {
+#vegetable-background-left7 {
   left: 540px;
   top: 367px;
 }
 
-.fruit-background-right1 {
+#vegetable-background-right1 {
   right: 289px;
   top: 75px;
 }
 
-.fruit-background-right2 {
+#vegetable-background-right2 {
   right: 460px;
   top: 75px;
 }
 
-.fruit-background-right3 {
+#vegetable-background-right3 {
   right: 260px;
   top: 175px;
 }
 
-.fruit-background-right4 {
+#vegetable-background-right4 {
   right: 200px;
   top: 278px;
 }
 
-.fruit-background-right5 {
+#vegetable-background-right5 {
   right: 490px;
   top: 278px;
 }
 
-.fruit-background-right6 {
+#vegetable-background-right6 {
   right: 360px;
   top: 367px;
 }
 
-.fruit-background-right7 {
+#vegetable-background-right7 {
   right: 540px;
   top: 367px;
 }
 
+.dialog {
+  position: absolute;
+  left: 30%;
+  top: 20%;
+  background: white;
+  border-radius: 15px;
+  width: 200px;
+  height: 200px;
+  color: black;
+  font-size: 15px;
+  padding: 10px;
+  visibility: hidden;
+  border: 3px solid black;
+}
+
 .treadmill2 {
   position: absolute;
-  left: -900px;
+  left: -150%;
 }
 
 .treadmill-animation-in {
@@ -160,12 +183,10 @@
 }
 
 .treadmill-animation-out {
-  position: absolute;
-  left: 0px;
-  -webkit-animation: slideOut 0.5s forwards;
-  -webkit-animation-delay: 2s;
-  animation: slide 3s forwards;
-  animation-delay: 2s;
+  /* -webkit-animation: slide-out 0.5s forwards; */
+  -webkit-animation-delay: 0s;
+  animation: slide-out 3s forwards;
+  animation-delay: 0s;
 }
 
 .buttons {
@@ -173,8 +194,16 @@
   justify-content: center;
 }
 
+.buttons > * {
+  margin: 15px;
+}
+
+.buttons > *:hover {
+  cursor: pointer;
+}
+
 .bars {
-  padding-top: 130px;
+  padding-top: 80px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -214,7 +243,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: lightgrey;
+  background-color: rgb(128, 128, 128);
 }
 
 .progress {
@@ -231,12 +260,12 @@ body {
 
 .bar-red {
   height: 20px;
-  background-color: #ee5253;
+  background-color: #0abde3;
   width: 100%;
 }
 
 .bar-blue {
   height: 20px;
-  background-color: #0abde3;
+  background-color: #ee5253;
   width: 50%;
 }

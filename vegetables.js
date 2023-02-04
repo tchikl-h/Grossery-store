@@ -3,7 +3,7 @@ function getAllVegetables() {
     {
       "id": 1,
       "name": "Banane",
-      "srcImg": "",
+      "srcImg": "banana",
       "isUnique": false,
       "hate": 50,
       "intro": [
@@ -29,7 +29,7 @@ function getAllVegetables() {
     {
       "id": 2,
       "name": "Carotte",
-      "srcImg": "",
+      "srcImg": "carot",
       "isUnique": false,
       "hate": 50,
       "intro": [
@@ -55,7 +55,7 @@ function getAllVegetables() {
     {
       "id": 3,
       "name": "Aubergine",
-      "srcImg": "",
+      "srcImg": "banana",
       "isUnique": false,
       "hate": 50,
       "intro": [
@@ -81,7 +81,7 @@ function getAllVegetables() {
     {
       "id": 4,
       "name": "Brocoli",
-      "srcImg": "",
+      "srcImg": "carot",
       "isUnique": false,
       "hate": 50,
       "intro": [

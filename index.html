@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 <script src="vegetables.js"></script>
 <script src="grossery.js"></script>
 <script src="./components/button/button.js"></script>
@@ -9,43 +12,38 @@
   </head>
   <body>
     <h2 id="date" class="date"></h2>
-    <img class="fruit-background fruit-background-left1" src="./images/fruits/carot.PNG"/>
-    <img class="fruit-background fruit-background-left2" src="./images/fruits/carot.PNG"/>
-    <img class="fruit-background fruit-background-left3" src="./images/fruits/carot.PNG"/>
-    <img class="fruit-background fruit-background-left4" src="./images/fruits/carot.PNG"/>
-    <img class="fruit-background fruit-background-left5" src="./images/fruits/carot.PNG"/>
-    <img class="fruit-background fruit-background-left6" src="./images/fruits/carot.PNG"/>
-    <img class="fruit-background fruit-background-left7" src="./images/fruits/carot.PNG"/>
-
-    <img class="fruit-background fruit-background-right1" src="./images/fruits/carot.PNG"/>
-    <img class="fruit-background fruit-background-right2" src="./images/fruits/carot.PNG"/>
-    <img class="fruit-background fruit-background-right3" src="./images/fruits/carot.PNG"/>
-    <img class="fruit-background fruit-background-right4" src="./images/fruits/carot.PNG"/>
-    <img class="fruit-background fruit-background-right5" src="./images/fruits/carot.PNG"/>
-    <img class="fruit-background fruit-background-right6" src="./images/fruits/carot.PNG"/>
-    <img class="fruit-background fruit-background-right7" src="./images/fruits/carot.PNG"/>
+    <img class="vegetable-background" id="vegetable-background-left1"/>
+    <img class="vegetable-background" id="vegetable-background-left2"/>
+    <img class="vegetable-background" id="vegetable-background-left3"/>
+    <img class="vegetable-background" id="vegetable-background-left4"/>
+    <img class="vegetable-background" id="vegetable-background-left5"/>
+    <img class="vegetable-background" id="vegetable-background-left6"/>
+    <img class="vegetable-background" id="vegetable-background-left7"/>
+    <img class="vegetable-background" id="vegetable-background-right1"/>
+    <img class="vegetable-background" id="vegetable-background-right2"/>
+    <img class="vegetable-background" id="vegetable-background-right3"/>
+    <img class="vegetable-background" id="vegetable-background-right4"/>
+    <img class="vegetable-background" id="vegetable-background-right5"/>
+    <img class="vegetable-background" id="vegetable-background-right6"/>
+    <img class="vegetable-background" id="vegetable-background-right7"/>
     <div class="merge">
-      <img id="shelves" class="shelves" src="./images/bg.png" />
+      <img id="shelves" class="shelves" src="./assets/images/bg.png" />
+      <div id="dialog" class="dialog"></div>
       <div class="treadmill"></div>
       <div id="complete-treadmill" class="treadmill2">
         <img
           id="treadmill"
           class="treadmill treadmill-fix"
-          src="./images/treadmill.jpg"
+          src="./assets/images/treadmill.png"
         >
-        <img
-          id="treadmill"
-          class="treadmill treadmill-fix"
-          src="./images/treadmill.jpg"
-        >
-          <img class="fruit" src="./images/fruits/carot.PNG">
+          <img id="current-vegetable" class="vegetable">
           </img>
         </img>
       </div>
       <!-- <img
         id="treadmill"
         class="treadmill treadmill-animation-out"
-        src="./images/treadmill.jpg"
+        src="./assets/images/treadmill.jpg"
       /> -->
     </div>
     <div id="buttons" class="buttons">
