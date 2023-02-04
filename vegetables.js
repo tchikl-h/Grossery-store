@@ -2,16 +2,11 @@ function getAllVegetables() {
   return [
     {
       "id": 1,
-      "name": "Banane",
-      "srcImg": "banana",
+      "nameFR": "Banane",
+      "name": "banana",
       "isUnique": false,
       "hate": 50,
-      "intro": [
-        {
-          "text": "",
-          "sound": ""
-        }
-      ],
+      "firstAppear": true,
       "promises": [
         {
           "text": "",
@@ -28,16 +23,11 @@ function getAllVegetables() {
     },
     {
       "id": 2,
-      "name": "Carotte",
-      "srcImg": "carot",
+      "nameFR": "Carotte",
+      "name": "carot",
       "isUnique": false,
       "hate": 50,
-      "intro": [
-        {
-          "text": "",
-          "sound": ""
-        }
-      ],
+      "firstAppear": true,
       "promises": [
         {
           "text": "",
@@ -54,16 +44,11 @@ function getAllVegetables() {
     },
     {
       "id": 3,
-      "name": "Aubergine",
-      "srcImg": "banana",
+      "nameFR": "Aubergine",
+      "name": "pedro",
       "isUnique": false,
       "hate": 50,
-      "intro": [
-        {
-          "text": "",
-          "sound": ""
-        }
-      ],
+      "firstAppear": true,
       "promises": [
         {
           "text": "",
@@ -80,16 +65,11 @@ function getAllVegetables() {
     },
     {
       "id": 4,
-      "name": "Brocoli",
-      "srcImg": "carot",
+      "nameFR": "Brocoli",
+      "name": "brocoli",
       "isUnique": false,
       "hate": 50,
-      "intro": [
-        {
-          "text": "",
-          "sound": ""
-        }
-      ],
+      "firstAppear": true,
       "promises": [
         {
           "text": "",
