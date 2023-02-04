@@ -28,18 +28,27 @@ function main() {
   document.addEventListener('DOMContentLoaded', init);
 }
 
-function start() {
+async function start() {
   playAudio('music.wav', 0.05);
   displayMainButtons();
   document.getElementById('complete-treadmill').classList.add("treadmill-animation-in");
-  hiddenBackgroundVegetable('right')
+  hiddenBackgroundVegetable('right');
+  await sleep(5000);
+  document.getElementById('dialog').style.visibility = 'visible';
+  const message = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.`
+  for (let i = 0; i < message.length; i++) {
+    document.getElementById('dialog').innerHTML += message.charAt(i);
+    await sleep(30);
+  }
 }
 
 function init() {
-  updateHTML('money', money + '$');
   updateDate();
   generateWeekVegetables();
   selectCurrentVegetable();
+  setMoney(money);
+  setMentalHealth(mentalHealth);
+  setHate(avgHate);
 }
 
 async function endDay(idAction) {
@@ -64,8 +73,9 @@ async function endDay(idAction) {
   }
 }
 
-async function nextDay() {
-  updateHTML('money', `${money}$ | mentalHealth ${mentalHealth} | avgHate ${avgHate} | hateCurrentVegetable ${allVegetables.find(findVege).hate}`)
+function nextDay() {
+  setMentalHealth(mentalHealth);
+  updateHTML("money", `${money}$`);
   nbDays++;
   updateDate();
   if (nbDays % 7 === 0) {
@@ -82,7 +92,7 @@ function checkAllPromises() {
     } else {
       promise.cond.days--;
       if (promise.cond.days <= 0) {
-        mentalHealth -= promise.punishment;
+        setMentalHealth(mentalHealth - promise.punishment);
         promise.isOver = true;
       }
     }
@@ -119,8 +129,8 @@ function generateWeekVegetables() {
       weekId: i,
       isPassed: false
     });
-    document.getElementById(`fruit-background-right${i+1}`).style.visibility = 'visible';
-    document.getElementById(`fruit-background-right${i+1}`).src = `./images/fruits/${randomVegetable.srcImg}1.png`;
+    document.getElementById(`vegetable-background-right${i+1}`).style.visibility = 'visible';
+    document.getElementById(`vegetable-background-right${i+1}`).src = `./assets/images/vegetables/${randomVegetable.srcImg}1.png`;
   }
   console.log(weekVegetables)
 }
@@ -128,7 +138,7 @@ function generateWeekVegetables() {
 function selectCurrentVegetable() {
   const avaibleVegetables = weekVegetables.filter(_vege => _vege.isPassed == false);
   currentVegetable = avaibleVegetables[getRandomInt(avaibleVegetables.length)];
-  document.getElementById('current-vegetable').src = `./images/fruits/${currentVegetable.srcImg}1.png`;
+  document.getElementById('current-vegetable').src = `./assets/images/vegetables/${currentVegetable.srcImg}1.png`;
   hiddenBackgroundVegetable('right');
   console.log(`______________ NEW CURRENT VEGE ______________`)
   console.log(currentVegetable)
@@ -150,7 +160,7 @@ function sell() {
 
 function eat() {
   setHate(20);
-  mentalHealth += 10;
+  setMentalHealth(10);
   endDay(2);
 }
 
@@ -177,6 +187,7 @@ function refusePromise() {
 // ____ SETTERS ___
 
 function setHate(value) {
+  console.log(setHate)
   console.log(`_____ SET HATE ____ : ${value}`)
   let newHate = allVegetables.find(findVege).hate;
   newHate += value;
@@ -188,6 +199,10 @@ function setHate(value) {
   allVegetables.find(findVege).hate = newHate;
   const sum = allVegetables.map(_vege => _vege.hate).reduce((a, b) => a + b, 0);
   avgHate = Math.round(sum / allVegetables.length);
+  updateHTML("avgHate", `${avgHate}%`);
+  document
+    .getElementById("avgHateBar")
+    .setAttribute("style", `width:${avgHate}%`);
   console.log(`NEW AVG HATE: ${avgHate}`);
 }
 
@@ -196,7 +211,18 @@ function setMoney(value) {
   if (money < 0) {
     money = 0;
   }
-  updateHTML('money', `${money}$ | mentalHealth ${mentalHealth} | avgHate ${avgHate} | hateCurrentVegetable ${allVegetables.find(findVege).hate}`)
+  updateHTML("money", `${money}$`);
+}
+
+function setMentalHealth(value) {
+  mentalHealth += value;
+  if (mentalHealth > 100) {
+    mentalHealth = 100;
+  }
+  updateHTML("mentalHealth", `${mentalHealth}%`);
+  document
+    .getElementById("mentalHealthBar")
+    .setAttribute("style", `width:${mentalHealth}%`);
 }
 
 // ___ CHANGE UI FUNCTIONS ____
@@ -206,7 +232,9 @@ function updateDate() {
 }
 
 function displayMainButtons() {
-  updateHTML('buttons', `
+  updateHTML(
+    "buttons",
+    `
     <button id="birbe" onclick="bribe()">Soudoyer</button>
     <button id="sell" onclick="sell()">Vendre</button>
     <button id="talk" onclick="talk()">Parler</button>
@@ -226,19 +254,19 @@ function updateHTML(id, value) {
 }
 
 function displayBackgroundVegetable(side) {
-  document.getElementById(`fruit-background-${side}${currentVegetable.weekId+1}`).style.visibility = 'visible';
-  document.getElementById(`fruit-background-${side}${currentVegetable.weekId+1}`).src = `./images/fruits/${currentVegetable.srcImg}1.png`;
+  document.getElementById(`vegetable-background-${side}${currentVegetable.weekId+1}`).style.visibility = 'visible';
+  document.getElementById(`vegetable-background-${side}${currentVegetable.weekId+1}`).src = `./assets/images/vegetables/${currentVegetable.srcImg}1.png`;
 }
 
 function hiddenBackgroundVegetable(side) {
-  document.getElementById(`fruit-background-${side}${currentVegetable.weekId+1}`).style.visibility = 'hidden';
-  delete document.getElementById(`fruit-background-${side}${currentVegetable.weekId+1}`).src;
+  document.getElementById(`vegetable-background-${side}${currentVegetable.weekId+1}`).style.visibility = 'hidden';
+  delete document.getElementById(`vegetable-background-${side}${currentVegetable.weekId+1}`).src;
 }
 
 function hiddenAllBackgroundLeft() {
   for (let i = 1; i <= 7; i++) {
-    document.getElementById(`fruit-background-left${i}`).style.visibility = 'hidden';
-    delete document.getElementById(`fruit-background-left${i}`).src;
+    document.getElementById(`vegetable-background-left${i}`).style.visibility = 'hidden';
+    delete document.getElementById(`vegetable-background-left${i}`).src;
   }
 }
  
@@ -253,7 +281,7 @@ function getRandomInt(max) {
 }
 
 function playAudio(name, volume) {
-  const audio = new Audio(`./sounds/${name}`);
+  const audio = new Audio(`./assets/sounds/${name}`);
   audio.volume = volume;
   audio.play();
 }

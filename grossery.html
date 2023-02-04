@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 <script src="vegetables.js"></script>
 <script src="grossery.js"></script>
 <html>
@@ -7,46 +10,59 @@
   </head>
   <body>
     <h2 id="date" class="date"></h2>
-    <img class="fruit-background" id="fruit-background-left1"/>
-    <img class="fruit-background" id="fruit-background-left2"/>
-    <img class="fruit-background" id="fruit-background-left3"/>
-    <img class="fruit-background" id="fruit-background-left4"/>
-    <img class="fruit-background" id="fruit-background-left5"/>
-    <img class="fruit-background" id="fruit-background-left6"/>
-    <img class="fruit-background" id="fruit-background-left7"/>
-    <img class="fruit-background" id="fruit-background-right1"/>
-    <img class="fruit-background" id="fruit-background-right2"/>
-    <img class="fruit-background" id="fruit-background-right3"/>
-    <img class="fruit-background" id="fruit-background-right4"/>
-    <img class="fruit-background" id="fruit-background-right5"/>
-    <img class="fruit-background" id="fruit-background-right6"/>
-    <img class="fruit-background" id="fruit-background-right7"/>
+    <img class="vegetable-background" id="vegetable-background-left1"/>
+    <img class="vegetable-background" id="vegetable-background-left2"/>
+    <img class="vegetable-background" id="vegetable-background-left3"/>
+    <img class="vegetable-background" id="vegetable-background-left4"/>
+    <img class="vegetable-background" id="vegetable-background-left5"/>
+    <img class="vegetable-background" id="vegetable-background-left6"/>
+    <img class="vegetable-background" id="vegetable-background-left7"/>
+    <img class="vegetable-background" id="vegetable-background-right1"/>
+    <img class="vegetable-background" id="vegetable-background-right2"/>
+    <img class="vegetable-background" id="vegetable-background-right3"/>
+    <img class="vegetable-background" id="vegetable-background-right4"/>
+    <img class="vegetable-background" id="vegetable-background-right5"/>
+    <img class="vegetable-background" id="vegetable-background-right6"/>
+    <img class="vegetable-background" id="vegetable-background-right7"/>
     <div class="merge">
-      <img id="shelves" class="shelves" src="./images/bg.png" />
+      <img id="shelves" class="shelves" src="./assets/images/bg.png" />
+      <div id="dialog" class="dialog"></div>
       <div class="treadmill"></div>
       <div id="complete-treadmill" class="treadmill2">
         <img
           id="treadmill"
           class="treadmill treadmill-fix"
-          src="./images/treadmill2.png"
+          src="./assets/images/treadmill.png"
         >
-          <img id="current-vegetable" class="fruit">
+          <img id="current-vegetable" class="vegetable">
           </img>
         </img>
       </div>
       <!-- <img
         id="treadmill"
         class="treadmill treadmill-animation-out"
-        src="./images/treadmill.jpg"
+        src="./assets/images/treadmill.jpg"
       /> -->
     </div>
     <div id="buttons" class="buttons">
       <button id="play" onclick="start()">Commencer</button>
     </div>
     <div class="bars">
-      <img id="sanity" class="bar" src="./images/bar.jpg" />
-      <div id="money"></div>
-      <img id="riot" class="bar" src="./images/bar.jpg" />
+      <div class="mentalHealth">
+        <div>Santé mentale</div>
+        <div class="progress">
+          <span id="mentalHealth" class="percent">100%</span>
+          <div id="mentalHealthBar" class="bar-red"></div>
+        </div>
+      </div>
+      <div class="riot">
+        <div>Rebellion</div>
+        <div class="progress">
+          <span id="avgHate" class="percent">50%</span>
+          <div id="avgHateBar" class="bar-blue"></div>
+        </div>
+      </div>  
     </div>
+    <div id="money">100$</div>
   </body>
 </html>
