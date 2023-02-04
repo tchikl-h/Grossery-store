@@ -6,25 +6,21 @@
     <link rel="stylesheet" href="./grossery.css" />
   </head>
   <body>
-    <h2 id="date" class="date">Jour 1 semaine 1</h2>
+    <h2 id="date" class="date"></h2>
     <div class="merge">
       <img id="shelves" class="shelves" src="./images/shelves.jpg" />
       <div class="treadmill"></div>
-      <img
-        id="treadmill"
-        class="treadmill treadmill-fix"
-        src="./images/treadmill.jpg"
-      />
-      <img
-        id="fruit"
-        class="fruit treadmill-animation-in"
-        src="./images/fruits/melon2.png"
-      />
-      <img
-        id=""
-        class="face treadmill-animation-in"
-        src="./images/fruits/visage_content.png"
-      />
+      <div id="complete-treadmill" class="treadmill2">
+        <img
+          id="treadmill"
+          class="treadmill treadmill-fix"
+          src="./images/treadmill.jpg"
+        >
+          <img class="fruit" src="./images/fruits/melon2.png">
+            <img class="face" src="./images/fruits/visage_content.png" />
+          </img>
+        </img>
+      </div>
       <!-- <img
         id="treadmill"
         class="treadmill treadmill-animation-out"
@@ -32,10 +28,7 @@
       /> -->
     </div>
     <div id="buttons" class="buttons">
-      <button id="birbe" onclick="bribe()">Soudoyer</button>
-      <button id="sell" onclick="sell()">Vendre</button>
-      <button id="talk" onclick="talk()">Parler</button>
-      <button id="eat" onclick="eat()">Manger</button>
+      <button id="play" onclick="start()">Commencer</button>
     </div>
     <div class="bars">
       <img id="sanity" class="bar" src="./images/bar.jpg" />
