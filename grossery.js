@@ -130,8 +130,9 @@ function checkAllPromises() {
 
 function checkConditionPromise(action) {
   for (const promise of promises) {
-    if (promise.cond.action === action && promise.cond.vegetables.includes(currentVegetable.id)) {
+    if (promise.cond.action.includes(action) && promise.cond.vegetables.includes(currentVegetable.id) && promise.cond.steps > 0) {
       promise.cond.vegetables.splice(promise.cond.vegetables.indexOf(currentVegetable.id), 1);
+      promise.cond.steps -= 1;
     }
   }
 }

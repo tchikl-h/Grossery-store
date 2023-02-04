@@ -26,7 +26,8 @@ function getAllVegetables() {
           "cond": {
             days: 5,
             action: 0,
-            vegetables: [1, 1]
+            vegetables: [1, 1],
+            steps: 2
           },
           "reward": 30,
           "punishment": -15
@@ -59,8 +60,8 @@ function getAllVegetables() {
           "cond": {
             days: 7,
             action: [1, 2],
-            vegetables: [1],
-            step: 1
+            vegetables: [1, 1],
+            step: 2
           },
           "reward": 35,
           "punishment": -30
@@ -81,7 +82,8 @@ function getAllVegetables() {
           "cond": {
             days: 3,
             action: 2,
-            vegetables: [3]
+            vegetables: [3],
+            steps: 1
           },
           "reward": 20,
           "punishment": -20
@@ -92,7 +94,8 @@ function getAllVegetables() {
           "cond": {
             days: 1,
             action: [0],
-            vegetables: [1, 2, 3, 4]
+            vegetables: [1, 2, 3, 4],
+            steps: 1
           },
           "reward": 10,
           "punishment": -10
