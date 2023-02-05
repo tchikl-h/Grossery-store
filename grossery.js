@@ -84,11 +84,11 @@ async function endDay(idAction) {
   document.getElementById('complete-treadmill').classList.remove("treadmill-animation-in");
   document.getElementById('complete-treadmill').offsetWidth;
   document.getElementById('complete-treadmill').classList.add("treadmill-animation-out");
+  checkConditionPromise(idAction);
+  checkAllPromises();
   await sleep(3000);
   displayBackgroundVegetable('right')
   weekVegetables[currentVegetable.weekId].isPassed = true;
-  checkConditionPromise(idAction);
-  checkAllPromises();
   if (mentalHealth <= 0) {
     document.getElementById('game-over-sante-mentale').style.display = 'block';
     gameOver();
@@ -126,14 +126,22 @@ async function nextDay() {
 
 function checkAllPromises() {
   for (const promise of promises) {
-    if (!promise.cond.vegetables.length) {
-      setHate(promise.reward * -1)
+    if (promise.cond.steps === 0) {
+      setHate(promise.reward * -1);
       promise.isOver = true;
+      document.getElementById('promise-success').style.visibility = 'visible';
+      setTimeout(() => {
+        document.getElementById('promise-success').style.visibility = 'hidden';
+      }, 2000);
     } else {
       promise.cond.days--;
       if (promise.cond.days <= 0) {
         setMentalHealth(promise.punishment);
         promise.isOver = true;
+        document.getElementById('promise-fail').style.visibility = 'visible';
+        setTimeout(() => {
+          document.getElementById('promise-fail').style.visibility = 'hidden';
+        }, 2000);
       }
     }
   }
@@ -213,6 +221,7 @@ async function eat() {
 
 function talk() {
   currentPromise = allVegetables.find(findVege).promises.shift();
+  currentPromise.cond.days++;
   playVoiceTalk(currentPromise);
   displayDialog(currentPromise.text);
   checkConditionPromise(3);
