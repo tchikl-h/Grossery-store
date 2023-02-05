@@ -25,6 +25,12 @@ let pomeloActivated = false;
 // round
 let nbDays = 0;
 
+// audio
+let currentTalk = null;
+
+// dialog
+let idxDialog = 0;
+
 // ___ MAIN FUNCTIONS ___
 
 function main() {
@@ -127,7 +133,7 @@ async function nextDay() {
 function checkAllPromises() {
   for (const promise of promises) {
     if (promise.cond.steps === 0) {
-      setHate(promise.reward * -1);
+      setHate(promise.reward * -1, false, promise.id_vege);
       promise.isOver = true;
       document.getElementById('promise-success').style.visibility = 'visible';
       setTimeout(() => {
@@ -199,28 +205,46 @@ async function bribe() {
   if (money < 20) {
     return;
   }
+  displayMainButtons(true);
   document.getElementById('dialog').style.visibility = 'hidden';
-  setHate(-20);
+  // await Promise.all([setHate(-20), setMoney(!pomeloActivated || currentVegetable.id !== 3 ? -20 : -5)]);
+  if (currentVegetable.id <= 4) {
+    setHate(-20);
+  }
   setMoney(!pomeloActivated || currentVegetable.id !== 3 ? -20 : -5);
   endDay(0)
 }
 
 async function sell() {
+  displayMainButtons(true);
   document.getElementById('dialog').style.visibility = 'hidden';
-  setHate(40);
-  setMoney(15);
+  // await Promise.all([setHate(40), setMoney(15)]);
+  if (currentVegetable.id <= 4) {
+    setHate(40);
+    setMoney(15);
+  } else {
+    setMoney(30);
+  }
   endDay(1);
 }
 
 async function eat() {
+  displayMainButtons(true);
   document.getElementById('dialog').style.visibility = 'hidden';
-  setHate(40);
-  setMentalHealth(10);
+  // await Promise.all([setHate(40),   setMentalHealth(15)]);
+  if (currentVegetable.id <= 4) {
+    setHate(40);
+    setMentalHealth(15);
+  } else {
+    setMentalHealth(20);
+  }
   endDay(2);
 }
 
 function talk() {
+  console.log(JSON.stringify(allVegetables.find(findVege)))
   currentPromise = allVegetables.find(findVege).promises.shift();
+  currentPromise['id_vege'] = currentVegetable.id;
   currentPromise.cond.days++;
   playVoiceTalk(currentPromise);
   displayDialog(currentPromise.text);
@@ -229,31 +253,33 @@ function talk() {
 }
 
 async function displayDialog(message) {
+  idxDialog++;
+  const id = idxDialog;
   document.getElementById('dialog').style.visibility = 'visible';
   document.getElementById('dialog').innerHTML = `<b>${currentVegetable.nameFR}</b>: `;
-  for (let i = 0; i < message.length; i++) {
+  for (let i = 0; i < message.length && idxDialog === id; i++) {
     document.getElementById('dialog').innerHTML += message.charAt(i);
     await sleep(30);
   }
 }
 
 function acceptPromise() {
+  displayMainButtons(true);
   document.getElementById('dialog').style.visibility = 'hidden';
   if (currentVegetable.id <= 4) {
     promises.push(currentPromise);
   } else {
     ptrUniqueFunctions[currentVegetable.srcImg]();
   }
-  displayMainButtons(true);
   endDay(4);
 }
 
 async function refusePromise() {
+  displayMainButtons(true);
   document.getElementById('dialog').style.visibility = 'hidden';
   if (currentVegetable.id <= 4) {
     setHate(-20);
   }
-  displayMainButtons(true);
   endDay(5);
 }
 
@@ -323,12 +349,14 @@ async function melon() {
 
 async function setHate(value, skip = false, idVegetablesTarget = null) {
   let newHate = allVegetables.find(idVegetablesTarget !== null ? _vege=>_vege.id===idVegetablesTarget : findVege).hate;
+  console.log(`CURRENT HATE: ${newHate}`)
   newHate += value;
   if (newHate < 0) {
     newHate = 0;
   } else if (newHate > 100) {
     newHate = 100;
   }
+  console.log(`NEW HATE ${newHate}`);
   allVegetables.find(idVegetablesTarget !== null ? _vege=>_vege.id===idVegetablesTarget : findVege).hate = newHate;
   const sum = allVegetables.filter(_vege=>_vege.maxAppears>1).map(_vege => _vege.hate).reduce((a, b) => a + b, 0);
   const newAvgHate = Math.round(sum / allVegetables.filter(_vege=>_vege.maxAppears>1).length);
@@ -342,6 +370,7 @@ async function setHate(value, skip = false, idVegetablesTarget = null) {
     document.getElementById("avgHateBar").setAttribute("style", `width:${avgHate}%`);
     await sleep(skip ? 1 : 100);
   }
+  console.log(`avgHate: ${avgHate}`)
 }
 
 async function setMoney(value, skip = false) {
@@ -385,7 +414,7 @@ function displayMainButtons(isDisabled) {
     `
     <button class="${isDisabled || money < 20 ? 'button-disabled' : 'button'}" id="birbe" ${isDisabled || money < 20 ? '' : 'onclick="bribe()'}">Soudoyer</button>
     <button class="${isDisabled ? 'button-disabled' : 'button'}" id="birbe" ${isDisabled ? '' : 'onclick="sell()'}">Vendre</button>
-    <button class="${isDisabled ? 'button-disabled' : 'button'}" id="birbe" ${isDisabled ? '' : 'onclick="talk()'}">Parler</button>
+    <button class="${isDisabled || !allVegetables.find(findVege).promises.length ? 'button-disabled' : 'button'}" id="birbe" ${isDisabled || !allVegetables.find(findVege).promises.length ? '' : 'onclick="talk()'}">Parler</button>
     <button class="${isDisabled ? 'button-disabled' : 'button'}" id="birbe" ${isDisabled ? '' : 'onclick="eat()'}">Manger</button>
   `);
 }
@@ -429,6 +458,9 @@ function getRandomInt(max) {
 }
 
 function playAudio(name, volume) {
+  if (volume === 1 && currentTalk) {
+    currentTalk.pause();
+  }
   const audio = new Audio(`./assets/sounds/${name}`);
   audio.volume = volume;
   audio.play();
@@ -444,6 +476,7 @@ function playAudio(name, volume) {
       isTalking = false;
       document.getElementById('current-vegetable').src = `./assets/images/vegetables/${currentVegetable.srcImg}1.png`;
     };
+    currentTalk = audio;
   }
 }
 
