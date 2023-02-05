@@ -72,7 +72,7 @@ html {
 }
 
 .vegetable {
-  margin-top: -650px;
+  margin-top: -500px;
   padding-left: 40%;
   height: 500px;
   width: 500px;
@@ -320,4 +320,14 @@ body {
 .promise {
   text-align: center;
   visibility: hidden;
+}
+
+.shadow {
+  margin-top: -100px;
+  width: 200px;
+  border-radius: 50%;
+  margin-left: 42%;
+  height: 30px;
+  background: black;
+  opacity: 0.5;
 }
