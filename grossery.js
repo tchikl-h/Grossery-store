@@ -221,7 +221,7 @@ async function bribe() {
   document.getElementById('dialog').style.visibility = 'hidden';
   // await Promise.all([setHate(-20), setMoney(!pomeloActivated || currentVegetable.id !== 3 ? -20 : -5)]);
   if (currentVegetable.id <= 4) {
-    setHate(-20);
+    setHate(-15);
   }
   setMoney(!pomeloActivated || currentVegetable.id !== 3 ? -20 : -5);
   endDay(0)
@@ -232,7 +232,7 @@ async function sell() {
   document.getElementById('dialog').style.visibility = 'hidden';
   // await Promise.all([setHate(40), setMoney(15)]);
   if (currentVegetable.id <= 4) {
-    setHate(40);
+    setHate(60);
     setMoney(15);
   } else {
     setMoney(30);
@@ -245,7 +245,7 @@ async function eat() {
   document.getElementById('dialog').style.visibility = 'hidden';
   // await Promise.all([setHate(40),   setMentalHealth(15)]);
   if (currentVegetable.id <= 4) {
-    setHate(40);
+    setHate(50);
     setMentalHealth(15);
   } else {
     setMentalHealth(20);

@@ -72,7 +72,7 @@ html {
 }
 
 .vegetable {
-  margin-top: -500px;
+  margin-top: -550px;
   padding-left: 40%;
   height: 500px;
   width: 500px;
@@ -87,72 +87,72 @@ html {
 
 #vegetable-background-left1 {
   left: 160px;
-  top: 64px;
+  top: 54px;
 }
 
 #vegetable-background-left2 {
   left: 460px;
-  top: 64px;
+  top: 54px;
 }
 
 #vegetable-background-left3 {
   left: 260px;
-  top: 167px;
+  top: 157px;
 }
 
 #vegetable-background-left4 {
   left: 200px;
-  top: 267px;
+  top: 257px;
 }
 
 #vegetable-background-left5 {
   left: 490px;
-  top: 267px;
+  top: 257px;
 }
 
 #vegetable-background-left6 {
   left: 360px;
-  top: 367px;
+  top: 357px;
 }
 
 #vegetable-background-left7 {
   left: 540px;
-  top: 367px;
+  top: 357px;
 }
 
 #vegetable-background-right1 {
   right: 289px;
-  top: 75px;
+  top: 65px;
 }
 
 #vegetable-background-right2 {
   right: 460px;
-  top: 75px;
+  top: 65px;
 }
 
 #vegetable-background-right3 {
   right: 260px;
-  top: 175px;
+  top: 165px;
 }
 
 #vegetable-background-right4 {
   right: 200px;
-  top: 278px;
+  top: 268px;
 }
 
 #vegetable-background-right5 {
   right: 490px;
-  top: 278px;
+  top: 268px;
 }
 
 #vegetable-background-right6 {
   right: 360px;
-  top: 367px;
+  top: 357px;
 }
 
 #vegetable-background-right7 {
   right: 540px;
-  top: 367px;
+  top: 357px;
 }
 
 .dialog {
