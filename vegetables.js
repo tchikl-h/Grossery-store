@@ -284,6 +284,23 @@ function getAllVegetables() {
       "intros": [
         "La vitamine c'est moi.",
       ]
+    },
+    {
+      "id": 12,
+      "nameFR": "Nicolas Sarkiwi",
+      "name": "kiwi",
+      "maxAppears": 1,
+      "hate": 50,
+      "firstAppear": true,
+      "promises": [
+        {
+          "text": "Monsieur l’épicier, j’ai besoin de votre soutien financier pour un projet, lequel ? Eh bah j’vais vous le dire.",
+          "sound": "kiwi-promise.mp3",
+        }
+      ],
+      "intros": [
+        "Si t’as pas une rolex avant 50 ans t’as raté ta vie.",
+      ]
     }
   ];
 }

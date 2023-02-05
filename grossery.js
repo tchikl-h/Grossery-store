@@ -286,7 +286,7 @@ async function refusePromise() {
 // ____ PROMISE UNIQUE ___
 
 const ptrUniqueFunctions = {
-  pomelo, orange, hollande, salad, chou, panet, melon
+  pomelo, orange, hollande, salad, chou, panet, melon, kiwi
 };
 
 function pomelo() {
@@ -342,6 +342,13 @@ async function melon() {
   await setHate(-20, false, 3);
   await setHate(-20, false, 4);
   setMoney(-100);
+  endDay(3);
+}
+
+async function kiwi() {
+  document.getElementById('dialog').style.visibility = 'hidden';
+  setMentalHealth(100);
+  setMoney(-1000);
   endDay(3);
 }
 
