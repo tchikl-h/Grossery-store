@@ -74,7 +74,7 @@ function init() {
   updateDate();
   generateWeekVegetables();
   setMoney(money, true);
-  setMentalHealth(50, true);
+  setMentalHealth(25, true);
   setHate(avgHate, true);
   setInterval(() => {
     const isLeft = getRandomInt(2) === 0;
