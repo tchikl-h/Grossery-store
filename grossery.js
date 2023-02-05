@@ -41,6 +41,7 @@ function main() {
 async function start() {
   playAudio('music.wav', 0.05);
   displayMainButtons(true);
+  playAudio('treadmill.mp3', 0.3);
   document.getElementById('complete-treadmill').classList.add("treadmill-animation-in");
   hiddenBackgroundVegetable('left');
   await sleep(5000);
@@ -84,6 +85,7 @@ async function endDay(idAction) {
   } else if (idAction === 0) {
     playAudio(`${allVegetables.find(findVege).name}-money.mp3`, 1);
   }
+  playAudio('treadmill.mp3', 0.3);
   document.getElementById('complete-treadmill').classList.remove("treadmill-animation-in");
   document.getElementById('complete-treadmill').offsetWidth;
   document.getElementById('complete-treadmill').classList.add("treadmill-animation-out");
@@ -121,6 +123,7 @@ async function nextDay() {
     await sleep(100);
   }
   document.getElementById('between-days').style.display = 'none';
+  playAudio('treadmill.mp3', 0.3);
   document.getElementById('complete-treadmill').classList.add("treadmill-animation-in");
   await sleep(4000);
   playVoice();
