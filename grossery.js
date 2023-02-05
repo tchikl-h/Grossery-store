@@ -8,7 +8,7 @@ const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Satur
 
 // stats
 let money = 50;
-let mentalHealth = 100;
+let mentalHealth = 0;
 let avgHate = 0;
 
 // promises
@@ -32,29 +32,20 @@ function main() {
 
 async function start() {
   playAudio('music.wav', 0.05);
-  displayMainButtons();
+  displayMainButtons(true);
   document.getElementById('complete-treadmill').classList.add("treadmill-animation-in");
   hiddenBackgroundVegetable('left');
   await sleep(5000);
-  // document.getElementById('dialog').style.visibility = 'visible';
   playVoice();
-  // const message = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.`
-  // for (let i = 0; i < message.length; i++) {
-  //   document.getElementById('dialog').innerHTML += message.charAt(i);
-  //   await sleep(30);
-  // }
+  displayMainButtons(false);
 }
 
 function playVoice() {
-  console.log(' * * * * PLAY VOICE * * * *')
   const _vege = allVegetables.find(findVege);
-  console.log(_vege);
   if (_vege.firstAppear) {
-    console.log('FIRST APPEAR')
     playAudio(`${_vege.name}-intro.mp3`, 1)
     _vege.firstAppear = false;
   } else {
-    console.log(_vege.hate);
     if (_vege.hate < 33) {
       playAudio(`${_vege.name}-nice.mp3`, 1)
     } else if (_vege.hate < 66) {
@@ -66,8 +57,6 @@ function playVoice() {
 }
 
 function playVoiceTalk(promise) {
-  console.log(' * * * * PLAY VOICE TALK * * * *')
-  console.log(promise.sound);
   playAudio(promise.sound, 1)
 }
 
@@ -75,12 +64,13 @@ function init() {
   updateDate();
   generateWeekVegetables();
   selectCurrentVegetable();
-  setMoney(money);
-  setMentalHealth(mentalHealth);
-  setHate(avgHate);
+  setMoney(money, true);
+  setMentalHealth(50, true);
+  setHate(avgHate, true);
 }
 
 async function endDay(idAction) {
+  displayMainButtons(true);
   if (idAction === 1 || idAction === 2) {
     playAudio(`${allVegetables.find(findVege).name}-dead.mp3`, 1);
   } else if (idAction === 0) {
@@ -102,7 +92,6 @@ async function endDay(idAction) {
 }
 
 async function nextDay() {
-  setMentalHealth(mentalHealth);
   updateHTML("money", `${money}$`);
   nbDays++;
   updateDate();
@@ -117,13 +106,13 @@ async function nextDay() {
   document.getElementById('complete-treadmill').classList.remove("treadmill-animation-out");
   await sleep(1500);
   while (isTalking) {
-    console.log(isTalking)
     await sleep(100);
   }
   document.getElementById('between-days').style.display = 'none';
   document.getElementById('complete-treadmill').classList.add("treadmill-animation-in");
   await sleep(4000);
   playVoice();
+  displayMainButtons(false);
 }
 
 function checkAllPromises() {
@@ -134,7 +123,7 @@ function checkAllPromises() {
     } else {
       promise.cond.days--;
       if (promise.cond.days <= 0) {
-        setMentalHealth(mentalHealth - promise.punishment);
+        setMentalHealth(promise.punishment);
         promise.isOver = true;
       }
     }
@@ -160,8 +149,14 @@ function gameOver() {
 function generateWeekVegetables() {
   hiddenAllBackgroundLeft();
   weekVegetables = [];
+  const vegetablesClassic = allVegetables.filter(_vege=>_vege.maxAppears>1);
+  const vegetableUnique = allVegetables.filter(_vege=>_vege.maxAppears===1);
+  let randUnique = getRandomInt(7);
   for (let i = 0; i < 7; i++) {
-    const randomVegetable = allVegetables[getRandomInt(allVegetables.length)];
+    const randomVegetable = (i === randUnique) ? vegetableUnique[getRandomInt(vegetableUnique.length)] : vegetablesClassic[getRandomInt(vegetablesClassic.length)];
+    if (i === randUnique) {
+      allVegetables.find(_vege => _vege.id === randomVegetable.id).maxAppears = 0;
+    }
     weekVegetables.push({
       id: randomVegetable.id,
       srcImg: randomVegetable.name,
@@ -182,49 +177,62 @@ function selectCurrentVegetable() {
 
 // ___ INTERACTION FUNCTIONS ___
 
-function bribe() {
+async function bribe() {
   if (money < 20) {
     return;
   }
-  setHate(-10);
-  setMoney(-10);
+  setHate(-20);
+  setMoney(-20);
   endDay(0)
 }
 
-function sell() {
-  setHate(20);
-  setMoney(10);
+async function sell() {
+  setHate(40);
+  setMoney(15);
   endDay(1);
 }
 
-function eat() {
-  setHate(20);
+async function eat() {
+  setHate(40);
   setMentalHealth(10);
   endDay(2);
 }
 
 function talk() {
   currentPromise = allVegetables.find(findVege).promises.shift();
-  playVoiceTalk(currentPromise)
+  playVoiceTalk(currentPromise);
+  displayDialog();
   checkConditionPromise(3);
   displayPromiseButtons();
 }
 
+async function displayDialog() {
+  document.getElementById('dialog').style.visibility = 'visible';
+  const message = currentPromise.text;
+  document.getElementById('dialog').innerHTML = '';
+  for (let i = 0; i < message.length; i++) {
+    document.getElementById('dialog').innerHTML += message.charAt(i);
+    await sleep(50);
+  }
+}
+
 function acceptPromise() {
+  document.getElementById('dialog').style.visibility = 'hidden';
   promises.push(currentPromise);
-  displayMainButtons();
+  displayMainButtons(true);
   endDay(4);
 }
 
-function refusePromise() {
-  setHate(-10);
-  displayMainButtons();
+async function refusePromise() {
+  document.getElementById('dialog').style.visibility = 'hidden';
+  setHate(-20);
+  displayMainButtons(true);
   endDay(5);
 }
 
 // ____ SETTERS ___
 
-function setHate(value) {
+async function setHate(value, skip = false) {
   let newHate = allVegetables.find(findVege).hate;
   newHate += value;
   if (newHate < 0) {
@@ -233,31 +241,48 @@ function setHate(value) {
     newHate = 100;
   }
   allVegetables.find(findVege).hate = newHate;
-  const sum = allVegetables.map(_vege => _vege.hate).reduce((a, b) => a + b, 0);
-  avgHate = Math.round(sum / allVegetables.length);
-  updateHTML("avgHate", `${avgHate}%`);
-  document
-    .getElementById("avgHateBar")
-    .setAttribute("style", `width:${avgHate}%`);
+  console.log(allVegetables.filter(_vege=>_vege.maxAppears>1).map(_vege => _vege.hate))
+  const sum = allVegetables.filter(_vege=>_vege.maxAppears>1).map(_vege => _vege.hate).reduce((a, b) => a + b, 0);
+  const newAvgHate = Math.round(sum / allVegetables.filter(_vege=>_vege.maxAppears>1).length);
+  while (avgHate !== newAvgHate) {
+    if (avgHate > newAvgHate) {
+      avgHate--;
+    } else {
+      avgHate++;
+    }
+    updateHTML("avgHate", `${avgHate}%`);
+    document.getElementById("avgHateBar").setAttribute("style", `width:${avgHate}%`);
+    await sleep(skip ? 1 : 100);
+  }
 }
 
-function setMoney(value) {
-  money += value;
-  if (money < 0) {
-    money = 0;
+async function setMoney(value, skip = false) {
+  while (money > 0 && value != 0) {
+    if (value > 0) {
+      money++;
+      value--;
+    } else {
+      money--;
+      value++;
+    }
+    updateHTML("money", `${money}$`);
+    await sleep(skip ? 1 : 100);
   }
-  updateHTML("money", `${money}$`);
 }
 
-function setMentalHealth(value) {
-  mentalHealth += value;
-  if (mentalHealth > 100) {
-    mentalHealth = 100;
+async function setMentalHealth(value, skip = false) {
+  while (mentalHealth < 100 && value !== 0) {
+    if (value > 0) {
+      mentalHealth++;
+      value--;
+    } else {
+      mentalHealth--;
+      value++;
+    }
+    updateHTML("mentalHealth", `${mentalHealth}%`);
+    document.getElementById("mentalHealthBar").setAttribute("style", `width:${mentalHealth}%`);
+    await sleep(skip ? 1 : 100);
   }
-  updateHTML("mentalHealth", `${mentalHealth}%`);
-  document
-    .getElementById("mentalHealthBar")
-    .setAttribute("style", `width:${mentalHealth}%`);
 }
 
 // ___ CHANGE UI FUNCTIONS ____
@@ -266,21 +291,21 @@ function updateDate() {
   updateHTML(`date`, `Week ${Math.floor(nbDays / 7) + 1}, ${weekdays[nbDays % 7]}`)
 }
 
-function displayMainButtons() {
+function displayMainButtons(isDisabled) {
   updateHTML(
     "buttons",
     `
-    <button class="button" id="birbe" onclick="bribe()">Soudoyer</button>
-    <button class="button" id="sell" onclick="sell()">Vendre</button>
-    <button class="button" id="talk" onclick="talk()">Parler</button>
-    <button class="button" id="eat" onclick="eat()">Manger</button>
+    <button class="${isDisabled || money < 20 ? 'button-disabled' : 'button'}" id="birbe" ${isDisabled || money < 20 ? '' : 'onclick="bribe()'}">Soudoyer</button>
+    <button class="${isDisabled ? 'button-disabled' : 'button'}" id="birbe" ${isDisabled ? '' : 'onclick="sell()'}">Vendre</button>
+    <button class="${isDisabled ? 'button-disabled' : 'button'}" id="birbe" ${isDisabled ? '' : 'onclick="talk()'}">Parler</button>
+    <button class="${isDisabled ? 'button-disabled' : 'button'}" id="birbe" ${isDisabled ? '' : 'onclick="eat()'}">Manger</button>
   `);
 }
 
 function displayPromiseButtons() {
   updateHTML('buttons', `
-    <button class="button" id="accept-promise" onclick="acceptPromise()">Yes</button>
-    <button class="button" id="refuse-promise" onclick="refusePromise()">No</button>
+    <button class="button" id="accept-promise" onclick="acceptPromise()">Accepter</button>
+    <button class="button" id="refuse-promise" onclick="refusePromise()">Refuser</button>
   `);
 }
 
@@ -322,13 +347,10 @@ function playAudio(name, volume) {
   if (volume === 1) {
     isTalking = true;
     const interval = setInterval(() => {
-      console.log('BONJOUR')
       currentStatAnim = (currentStatAnim === 1) ? 2 : 1;
-      console.log(`./assets/images/vegetables/${currentVegetable.srcImg}${currentStatAnim}.png`)
       document.getElementById('current-vegetable').src = `./assets/images/vegetables/${currentVegetable.srcImg}${currentStatAnim}.png`;
     }, 200);
     audio.onended = function() {
-      console.log('C est fini !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
       clearInterval(interval);
       currentStatAnim = 1;
       isTalking = false;

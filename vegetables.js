@@ -4,7 +4,7 @@ function getAllVegetables() {
       "id": 1,
       "nameFR": "Banane",
       "name": "banana",
-      "isUnique": false,
+      "maxAppears": 1000,
       "hate": 50,
       "firstAppear": true,
       "promises": [
@@ -38,7 +38,7 @@ function getAllVegetables() {
       "id": 2,
       "nameFR": "Carotte",
       "name": "carot",
-      "isUnique": false,
+      "maxAppears": 1000,
       "hate": 50,
       "firstAppear": true,
       "promises": [
@@ -72,7 +72,7 @@ function getAllVegetables() {
       "id": 3,
       "nameFR": "Aubergine",
       "name": "pedro",
-      "isUnique": false,
+      "maxAppears": 1000,
       "hate": 50,
       "firstAppear": true,
       "promises": [
@@ -106,7 +106,7 @@ function getAllVegetables() {
       "id": 4,
       "nameFR": "Brocoli",
       "name": "brocoli",
-      "isUnique": false,
+      "maxAppears": 1000,
       "hate": 50,
       "firstAppear": true,
       "promises": [
@@ -123,7 +123,7 @@ function getAllVegetables() {
           "punishment": -40
         },
         {
-          "text": "C'est moi ou les carottes elles sont bizzares en ce moment, tu pourrais en flinguer une pour moi s'il te plait, juste en 96h.",
+          "text": "C'est moi ou les carottes elles sont bizarres en ce moment, tu pourrais en flinguer une pour moi s'il te plait, juste en 96h.",
           "sound": "brocoli-promise-2.mp3",
           "cond": {
             days: 4,
@@ -133,6 +133,66 @@ function getAllVegetables() {
           },
           "reward": 15,
           "punishment": -20
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "nameFR": "Framboise Hollande",
+      "name": "hollande",
+      "maxAppears": 1,
+      "hate": 50,
+      "firstAppear": true,
+      "promises": [
+        {
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "nameFR": "Pomelo Anderson",
+      "name": "pomelo",
+      "maxAppears": 1,
+      "hate": 50,
+      "firstAppear": true,
+      "promises": [
+        {
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "nameFR": "Jean Lasalade",
+      "name": "salad",
+      "maxAppears": 1,
+      "hate": 50,
+      "firstAppear": true,
+      "promises": [
+        {
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "nameFR": "Orangesan",
+      "name": "orange",
+      "maxAppears": 1,
+      "hate": 50,
+      "firstAppear": true,
+      "promises": [
+        {
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "nameFR": "Chou-Marreur",
+      "name": "chou",
+      "maxAppears": 1,
+      "hate": 50,
+      "firstAppear": true,
+      "promises": [
+        {
         }
       ]
     }
