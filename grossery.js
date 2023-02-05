@@ -2,7 +2,7 @@
 
 const allVegetables = getAllVegetables();
 
-const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
 // ___ GLOBALS ___
 
@@ -20,6 +20,7 @@ let weekVegetables = [];
 let currentVegetable = null;
 let currentStatAnim = 1;
 let isTalking = false;
+let pomeloActivated = false;
 
 // round
 let nbDays = 0;
@@ -151,7 +152,7 @@ function generateWeekVegetables() {
   weekVegetables = [];
   const vegetablesClassic = allVegetables.filter(_vege=>_vege.maxAppears>1);
   const vegetableUnique = allVegetables.filter(_vege=>_vege.maxAppears===1);
-  let randUnique = getRandomInt(7);
+  let randUnique = 0; // getRandomInt(7);
   for (let i = 0; i < 7; i++) {
     const randomVegetable = (i === randUnique) ? vegetableUnique[getRandomInt(vegetableUnique.length)] : vegetablesClassic[getRandomInt(vegetablesClassic.length)];
     if (i === randUnique) {
@@ -170,7 +171,7 @@ function generateWeekVegetables() {
 
 function selectCurrentVegetable() {
   const avaibleVegetables = weekVegetables.filter(_vege => _vege.isPassed == false);
-  currentVegetable = avaibleVegetables[getRandomInt(avaibleVegetables.length)];
+  currentVegetable = avaibleVegetables[0]; // [getRandomInt(avaibleVegetables.length)];
   document.getElementById('current-vegetable').src = `./assets/images/vegetables/${currentVegetable.srcImg}1.png`;
   hiddenBackgroundVegetable('left');
 }
@@ -182,7 +183,7 @@ async function bribe() {
     return;
   }
   setHate(-20);
-  setMoney(-20);
+  setMoney(!pomeloActivated || currentVegetable.id !== 3 ? -20 : -5);
   endDay(0)
 }
 
@@ -218,22 +219,65 @@ async function displayDialog() {
 
 function acceptPromise() {
   document.getElementById('dialog').style.visibility = 'hidden';
-  promises.push(currentPromise);
+  if (currentVegetable.id <= 4) {
+    promises.push(currentPromise);
+  } else {
+    ptrUniqueFunctions[currentVegetable.srcImg]();
+  }
   displayMainButtons(true);
   endDay(4);
 }
 
 async function refusePromise() {
   document.getElementById('dialog').style.visibility = 'hidden';
-  setHate(-20);
+  if (currentVegetable.id <= 4) {
+    setHate(-20);
+  }
   displayMainButtons(true);
   endDay(5);
 }
 
+// ____ PROMISE UNIQUE ___
+
+const ptrUniqueFunctions = {
+  pomelo, orange, hollande, salad, chou
+};
+
+function pomelo() {
+  pomeloActivated = true;
+  endDay(3);
+}
+
+async function orange() {
+  await setHate(-20, false, 2);
+  await setHate(-20, false, 3);
+  await setHate(-20, false, 4);
+  await setHate(60, false, 1);
+  endDay(3);
+}
+
+function hollande() {
+  setMoney(Math.round(money / 2 + 0.5) * -1);
+  setHate(-100, false, 4);
+  endDay(3);
+}
+
+function chou() {
+  setMoney(60);
+  setMentalHealth(Math.round(mentalHealth / 4 + 0.5) * -1)
+  endDay(3);
+}
+
+function salad() {
+  setMoney(60);
+  setMentalHealth(Math.round(mentalHealth / 4 + 0.5) * -1)
+  endDay(3);
+}
+
 // ____ SETTERS ___
 
-async function setHate(value, skip = false) {
-  let newHate = allVegetables.find(findVege).hate;
+async function setHate(value, skip = false, idVegetablesTarget = null) {
+  let newHate = allVegetables.find(idVegetablesTarget !== null ? _vege=>_vege.id===idVegetablesTarget : findVege).hate;
   newHate += value;
   if (newHate < 0) {
     newHate = 0;
