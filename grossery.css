@@ -280,6 +280,24 @@ body {
   left: 0%;
 }
 
+#game-over-sante-mentale {
+  display: none;
+  width: 1920px;
+  height: 1020px;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+}
+
+#game-over-rebellion {
+  display: none;
+  width: 1920px;
+  height: 1020px;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+}
+
 #week-nb {
   font-size: 20px;
   position: absolute;

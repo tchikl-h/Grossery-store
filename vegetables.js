@@ -14,7 +14,7 @@ function getAllVegetables() {
           "cond": {
             days: 1,
             action: [2],
-            vegetables: [1, 2, 3, 4],
+            vegetables: [1, 2, 3, 4, 5, 6, 7, 8, 9],
             steps: 1
           },
           "reward": 60,
