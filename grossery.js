@@ -254,7 +254,6 @@ async function eat() {
 }
 
 function talk() {
-  console.log(JSON.stringify(allVegetables.find(findVege)))
   currentPromise = allVegetables.find(findVege).promises.shift();
   currentPromise['id_vege'] = currentVegetable.id;
   currentPromise.cond.days++;
@@ -369,14 +368,12 @@ async function kiwi() {
 async function setHate(value, skip = false, idVegetablesTarget = null) {
   if (!skip) {
     let newHate = allVegetables.find(idVegetablesTarget !== null ? _vege=>_vege.id===idVegetablesTarget : findVege).hate;
-    console.log(`CURRENT HATE: ${newHate}`)
     newHate += value;
     if (newHate < 0) {
       newHate = 0;
     } else if (newHate > 100) {
       newHate = 100;
     }
-    console.log(`NEW HATE ${newHate}`);
     allVegetables.find(idVegetablesTarget !== null ? _vege=>_vege.id===idVegetablesTarget : findVege).hate = newHate;
   }
   const sum = allVegetables.filter(_vege=>_vege.maxAppears>1).map(_vege => _vege.hate).reduce((a, b) => a + b, 0);
@@ -391,7 +388,6 @@ async function setHate(value, skip = false, idVegetablesTarget = null) {
     document.getElementById("avgHateBar").setAttribute("style", `width:${avgHate}%`);
     await sleep(skip ? 1 : 100);
   }
-  console.log(`avgHate: ${avgHate}`)
 }
 
 async function setMoney(value, skip = false) {
