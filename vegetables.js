@@ -145,6 +145,12 @@ function getAllVegetables() {
       "firstAppear": true,
       "promises": [
         {
+          "text": "Alors euuh, je te promets que si tu donnes des sous pour ma campagne, ça fera très très plaisir à tous mes amis les brocolis gne-eh.",
+          "sound": "brocoli-promise-2.mp3",
+          "cond": {
+          },
+          "reward": 15,
+          "punishment": -20
         }
       ]
     },
@@ -157,6 +163,12 @@ function getAllVegetables() {
       "firstAppear": true,
       "promises": [
         {
+          "text": "Ouh ouh, sois généreux avec moi et tous mes fans moustachus. N'hésite pas à leur donner de l'argent, de la money.",
+          "sound": "brocoli-promise-2.mp3",
+          "cond": {
+          },
+          "reward": 15,
+          "punishment": -20
         }
       ]
     },
@@ -169,6 +181,12 @@ function getAllVegetables() {
       "firstAppear": true,
       "promises": [
         {
+          "text": "Mmmh laisse moi reniffler ton cou petite cochonne, je vais faire de toi quelqu'un de riche.",
+          "sound": "brocoli-promise-2.mp3",
+          "cond": {
+          },
+          "reward": 15,
+          "punishment": -20
         }
       ]
     },
@@ -181,6 +199,12 @@ function getAllVegetables() {
       "firstAppear": true,
       "promises": [
         {
+          "text": "Eh t'sais quoi, si t'acceptes de faire un feat avec moi j'te promets, tout le monde va m'adorer.. Sauf les bananes mais bon personne les aime.",
+          "sound": "brocoli-promise-2.mp3",
+          "cond": {
+          },
+          "reward": 15,
+          "punishment": -20
         }
       ]
     },
@@ -193,6 +217,12 @@ function getAllVegetables() {
       "firstAppear": true,
       "promises": [
         {
+          "text": "Gggrrrr aide moi à m'en débarasser et je me transformerai en ta machine à sous.",
+          "sound": "brocoli-promise-2.mp3",
+          "cond": {
+          },
+          "reward": 15,
+          "punishment": -20
         }
       ]
     }
