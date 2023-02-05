@@ -191,7 +191,7 @@ function getAllVegetables() {
         }
       ],
       "intros": [
-        "Ouuh, hello darling, c'est Pamela Andreson.",
+        "Ouuh, hello darling, c'est Pomelo Andreson.",
       ]
     },
     {
@@ -243,6 +243,23 @@ function getAllVegetables() {
       ],
       "intros": [
         "*rire* Le bonjour du chou.",
+      ]
+    },
+    {
+      "id": 10,
+      "nameFR": "Jean-Marie Le Panet",
+      "name": "panet",
+      "maxAppears": 1,
+      "hate": 50,
+      "firstAppear": true,
+      "promises": [
+        {
+          "text": "Je peux te donner tout l'or des radis si tu deviens mon heritier, même si ça peut en chiffoner quelques uns.",
+          "sound": "panet-promise.mp3",
+        }
+      ],
+      "intros": [
+        "Bonsoiiiir c'est Jean-Marie Le Panet",
       ]
     }
   ];

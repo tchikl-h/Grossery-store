@@ -90,6 +90,8 @@ async function endDay(idAction) {
   checkConditionPromise(idAction);
   checkAllPromises();
   if (mentalHealth <= 0 || avgHate >= 80) {
+    console.log(mentalHealth);
+    console.log(avgHate);
     gameOver();
   } else {
     nextDay();
@@ -247,7 +249,7 @@ async function refusePromise() {
 // ____ PROMISE UNIQUE ___
 
 const ptrUniqueFunctions = {
-  pomelo, orange, hollande, salad, chou
+  pomelo, orange, hollande, salad, chou, panet
 };
 
 function pomelo() {
@@ -283,6 +285,16 @@ function salad() {
   document.getElementById('dialog').style.visibility = 'hidden';
   setMoney(60);
   setMentalHealth(Math.round(mentalHealth / 4 + 0.5) * -1)
+  endDay(3);
+}
+
+async function panet() {
+  document.getElementById('dialog').style.visibility = 'hidden';
+  await setHate(30, false, 1);
+  await setHate(30, false, 2);
+  await setHate(30, false, 3);
+  await setHate(30, false, 4);
+  setMoney(180);
   endDay(3);
 }
 
@@ -326,7 +338,7 @@ async function setMoney(value, skip = false) {
 }
 
 async function setMentalHealth(value, skip = false) {
-  while (mentalHealth > 0 && mentalHealth < 100 && value !== 0) {
+  while (mentalHealth >= 0 && mentalHealth < 100 && value !== 0) {
     if (value > 0) {
       mentalHealth++;
       value--;
