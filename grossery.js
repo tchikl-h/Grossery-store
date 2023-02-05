@@ -381,6 +381,7 @@ async function setHate(value, skip = false, idVegetablesTarget = null) {
 }
 
 async function setMoney(value, skip = false) {
+  playAudio("money.mp3", 1);
   while (money > 0 && value != 0) {
     if (value > 0) {
       money++;
