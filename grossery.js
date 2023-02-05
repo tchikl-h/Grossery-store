@@ -154,12 +154,13 @@ function gameOver() {
 function generateWeekVegetables() {
   hiddenAllBackgroundLeft();
   weekVegetables = [];
-  const vegetablesClassic = allVegetables.filter(_vege=>_vege.maxAppears>1);
-  const vegetableUnique = allVegetables.filter(_vege=>_vege.maxAppears===1);
-  let randUnique = getRandomInt(7);
+  const vegetablesClassic = allVegetables.filter(_vege=>_vege.maxAppears>1)
+  let randUniques = [getRandomInt(7), getRandomInt(7)];
+  console.log(randUniques)
   for (let i = 0; i < 7; i++) {
-    const randomVegetable = (i === randUnique) ? vegetableUnique[getRandomInt(vegetableUnique.length)] : vegetablesClassic[getRandomInt(vegetablesClassic.length)];
-    if (i === randUnique) {
+    const vegetableUnique = allVegetables.filter(_vege=>_vege.maxAppears===1);
+    const randomVegetable = (randUniques.includes(i)) ? vegetableUnique[getRandomInt(vegetableUnique.length)] : vegetablesClassic[getRandomInt(vegetablesClassic.length)];
+    if (randUniques.includes(i)) {
       allVegetables.find(_vege => _vege.id === randomVegetable.id).maxAppears = 0;
     }
     weekVegetables.push({
@@ -325,7 +326,7 @@ async function setMoney(value, skip = false) {
 }
 
 async function setMentalHealth(value, skip = false) {
-  while (mentalHealth < 100 && value !== 0) {
+  while (mentalHealth > 0 && mentalHealth < 100 && value !== 0) {
     if (value > 0) {
       mentalHealth++;
       value--;

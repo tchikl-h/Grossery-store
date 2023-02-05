@@ -17,8 +17,8 @@ function getAllVegetables() {
             vegetables: [1, 2, 3, 4],
             steps: 1
           },
-          "reward": 10,
-          "punishment": -10
+          "reward": 60,
+          "punishment": -30
         },
         {
           "text": "Eeh euuh toi là, ouai c’est à toi qu’je cause ! File de la thune à 2 de mes copains, on te revaudra ça t’inquiète ahah.. Tu as 5 jours !",
@@ -29,8 +29,8 @@ function getAllVegetables() {
             vegetables: [1, 1],
             steps: 2
           },
-          "reward": 30,
-          "punishment": -15
+          "reward": 80,
+          "punishment": -40
         }
       ],
       "intros": [
@@ -57,8 +57,8 @@ function getAllVegetables() {
             vegetables: [1],
             step: 1
           },
-          "reward": 15,
-          "punishment": -20
+          "reward": 60,
+          "punishment": -30
         },
         {
           "text": "Je pense que le clan des bananes prépare un sale coup, débarasse toi d’eux avant la fin de la semaine !",
@@ -69,8 +69,8 @@ function getAllVegetables() {
             vegetables: [1, 1],
             step: 2
           },
-          "reward": 35,
-          "punishment": -30
+          "reward": 80,
+          "punishment": -40
         }
       ],
       "intros": [
@@ -97,8 +97,8 @@ function getAllVegetables() {
             vegetables: [3],
             steps: 1
           },
-          "reward": 20,
-          "punishment": -20
+          "reward": 60,
+          "punishment": -40
         },
         {
           "text": "Ehh psss psss, tu aurais pas quelques pesos pour le prochain, je suis d’humour généreuse aujourd’hui",
@@ -109,8 +109,8 @@ function getAllVegetables() {
             vegetables: [1, 2, 3, 4],
             steps: 1
           },
-          "reward": 10,
-          "punishment": -10
+          "reward": 80,
+          "punishment": -40
         }
       ],
       "intros": [
@@ -137,8 +137,8 @@ function getAllVegetables() {
             vegetables: [4, 4, 4],
             steps: 3
           },
-          "reward": 45,
-          "punishment": -40
+          "reward": 60,
+          "punishment": -30
         },
         {
           "text": "C'est moi ou les carottes elles sont bizarres en ce moment, tu pourrais en flinguer une pour moi s'il te plait, juste en 96h.",
@@ -149,8 +149,8 @@ function getAllVegetables() {
             vegetables: [2],
             steps: 1
           },
-          "reward": 15,
-          "punishment": -20
+          "reward": 80,
+          "punishment": -40
         }
       ],
       "intros": [
@@ -171,10 +171,6 @@ function getAllVegetables() {
         {
           "text": "Alors euuh, je te promets que si tu donnes des sous pour ma campagne, ça fera très très plaisir à tous mes amis les brocolis gne-eh.",
           "sound": "hollande-promise.mp3",
-          "cond": {
-          },
-          "reward": 15,
-          "punishment": -20
         }
       ],
       "intros": [
@@ -192,10 +188,6 @@ function getAllVegetables() {
         {
           "text": "Ouh ouh, sois généreux avec moi et tous mes fans moustachus. N'hésite pas à leur donner de l'argent, de la money.",
           "sound": "pomelo-promise.mp3",
-          "cond": {
-          },
-          "reward": 15,
-          "punishment": -20
         }
       ],
       "intros": [
@@ -213,10 +205,6 @@ function getAllVegetables() {
         {
           "text": "Mmmh laisse moi reniffler ton cou petite cochonne, je vais faire de toi quelqu'un de riche.",
           "sound": "salad-promise.mp3",
-          "cond": {
-          },
-          "reward": 15,
-          "punishment": -20
         }
       ],
       "intros": [
@@ -234,10 +222,6 @@ function getAllVegetables() {
         {
           "text": "Eh t'sais quoi, si t'acceptes de faire un feat avec moi j'te promets, tout le monde va m'adorer.. Sauf les bananes mais bon personne les aime.",
           "sound": "orange-promise.mp3",
-          "cond": {
-          },
-          "reward": 15,
-          "punishment": -20
         }
       ],
       "intros": [
@@ -255,10 +239,6 @@ function getAllVegetables() {
         {
           "text": "Gggrrrr aide moi à m'en débarasser et je me transformerai en ta machine à sous.",
           "sound": "chou-promise.mp3",
-          "cond": {
-          },
-          "reward": 15,
-          "punishment": -20
         }
       ],
       "intros": [
