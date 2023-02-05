@@ -297,6 +297,7 @@ function getAllVegetables() {
         {
           "text": "Monsieur l’épicier, j’ai besoin de votre soutien financier pour un projet, lequel ? Eh bah j’vais vous le dire.",
           "sound": "kiwi-promise.mp3",
+          "cond": { days: 1 }
         }
       ],
       "intros": [
