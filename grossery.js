@@ -219,7 +219,6 @@ async function bribe() {
   }
   displayMainButtons(true);
   document.getElementById('dialog').style.visibility = 'hidden';
-  // await Promise.all([setHate(-20), setMoney(!pomeloActivated || currentVegetable.id !== 3 ? -20 : -5)]);
   if (currentVegetable.id <= 4) {
     setHate(-15);
   }
@@ -230,7 +229,6 @@ async function bribe() {
 async function sell() {
   displayMainButtons(true);
   document.getElementById('dialog').style.visibility = 'hidden';
-  // await Promise.all([setHate(40), setMoney(15)]);
   if (currentVegetable.id <= 4) {
     setHate(60);
     setMoney(15);
@@ -243,7 +241,6 @@ async function sell() {
 async function eat() {
   displayMainButtons(true);
   document.getElementById('dialog').style.visibility = 'hidden';
-  // await Promise.all([setHate(40),   setMentalHealth(15)]);
   if (currentVegetable.id <= 4) {
     setHate(50);
     setMentalHealth(15);
@@ -289,7 +286,7 @@ async function refusePromise() {
   displayMainButtons(true);
   document.getElementById('dialog').style.visibility = 'hidden';
   if (currentVegetable.id <= 4) {
-    setHate(-20);
+    setHate(20);
   }
   endDay(5);
 }
@@ -406,7 +403,7 @@ async function setMoney(value, skip = false) {
 }
 
 async function setMentalHealth(value, skip = false) {
-  while (mentalHealth >= 0 && mentalHealth < 100 && value !== 0) {
+  while (mentalHealth >= 0 && mentalHealth <= 100 && value !== 0) {
     if (value > 0) {
       mentalHealth++;
       value--;

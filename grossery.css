@@ -272,8 +272,8 @@ body {
 
 #between-days {
   display: none;
-  width: 1920px;
-  height: 1020px;
+  width: 100%;
+  height: 100%;
   background: black;
   position: absolute;
   top: 0%;
