@@ -25,6 +25,12 @@ let pomeloActivated = false;
 // round
 let nbDays = 0;
 
+// audio
+let currentTalk = null;
+
+// dialog
+let idxDialog = 0;
+
 // ___ MAIN FUNCTIONS ___
 
 function main() {
@@ -247,9 +253,11 @@ function talk() {
 }
 
 async function displayDialog(message) {
+  idxDialog++;
+  const id = idxDialog;
   document.getElementById('dialog').style.visibility = 'visible';
   document.getElementById('dialog').innerHTML = `<b>${currentVegetable.nameFR}</b>: `;
-  for (let i = 0; i < message.length; i++) {
+  for (let i = 0; i < message.length && idxDialog === id; i++) {
     document.getElementById('dialog').innerHTML += message.charAt(i);
     await sleep(30);
   }
@@ -440,6 +448,9 @@ function getRandomInt(max) {
 }
 
 function playAudio(name, volume) {
+  if (volume === 1 && currentTalk) {
+    currentTalk.pause();
+  }
   const audio = new Audio(`./assets/sounds/${name}`);
   audio.volume = volume;
   audio.play();
@@ -455,6 +466,7 @@ function playAudio(name, volume) {
       isTalking = false;
       document.getElementById('current-vegetable').src = `./assets/images/vegetables/${currentVegetable.srcImg}1.png`;
     };
+    currentTalk = audio;
   }
 }
 
