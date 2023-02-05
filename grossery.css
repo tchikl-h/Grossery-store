@@ -159,11 +159,10 @@ html {
   position: absolute;
   left: 32%;
   top: 20%;
-  background: white;
+  background: black;
   border-radius: 15px;
   width: 200px;
   height: 200px;
-  color: black;
   font-size: 15px;
   padding: 10px;
   visibility: hidden;
