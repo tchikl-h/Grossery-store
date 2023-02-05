@@ -84,7 +84,7 @@ async function endDay(idAction) {
   weekVegetables[currentVegetable.weekId].isPassed = true;
   checkConditionPromise(idAction);
   checkAllPromises();
-  if (mentalHealth <= 0 || avgHate >= 100) {
+  if (mentalHealth <= 0 || avgHate >= 80) {
     gameOver();
   } else {
     nextDay();
