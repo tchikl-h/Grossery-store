@@ -279,6 +279,7 @@ function getAllVegetables() {
         {
           "text": "J’ai besoin de votre soutien, je vous demande de m'élire premier fruitiste.",
           "sound": "melon-promise.mp3",
+          "cond": { days: 1 }
         }
       ],
       "intros": [
