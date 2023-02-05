@@ -160,7 +160,6 @@ function generateWeekVegetables() {
   weekVegetables = [];
   const vegetablesClassic = allVegetables.filter(_vege=>_vege.maxAppears>1)
   let randUniques = [getRandomInt(7), getRandomInt(7)];
-  console.log(randUniques)
   for (let i = 0; i < 7; i++) {
     const vegetableUnique = allVegetables.filter(_vege=>_vege.maxAppears===1);
     const randomVegetable = (randUniques.includes(i)) ? vegetableUnique[getRandomInt(vegetableUnique.length)] : vegetablesClassic[getRandomInt(vegetablesClassic.length)];
@@ -170,6 +169,7 @@ function generateWeekVegetables() {
     weekVegetables.push({
       id: randomVegetable.id,
       srcImg: randomVegetable.name,
+      nameFR: randomVegetable.nameFR,
       weekId: i,
       isPassed: false
     });
@@ -221,7 +221,7 @@ function talk() {
 
 async function displayDialog(message) {
   document.getElementById('dialog').style.visibility = 'visible';
-  document.getElementById('dialog').innerHTML = '';
+  document.getElementById('dialog').innerHTML = `<b>${currentVegetable.nameFR}</b>: `;
   for (let i = 0; i < message.length; i++) {
     document.getElementById('dialog').innerHTML += message.charAt(i);
     await sleep(30);
