@@ -261,6 +261,23 @@ function getAllVegetables() {
       "intros": [
         "Bonsoiiiir c'est Jean-Marie Le Panet",
       ]
+    },
+    {
+      "id": 11,
+      "nameFR": "Jean-luc Melon",
+      "name": "melon",
+      "maxAppears": 1,
+      "hate": 50,
+      "firstAppear": true,
+      "promises": [
+        {
+          "text": "J’ai besoin de votre soutien, je vous demande de m'élire premier fruitiste.",
+          "sound": "melon-promise.mp3",
+        }
+      ],
+      "intros": [
+        "La vitamine c'est moi.",
+      ]
     }
   ];
 }
