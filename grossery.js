@@ -84,7 +84,11 @@ async function endDay(idAction) {
   weekVegetables[currentVegetable.weekId].isPassed = true;
   checkConditionPromise(idAction);
   checkAllPromises();
-  if (mentalHealth <= 0 || avgHate >= 80) {
+  if (mentalHealth <= 0) {
+    document.getElementById('game-over-sante-mentale').style.display = 'block';
+    gameOver();
+  } else if (avgHate >= 80) {
+    document.getElementById('game-over-rebellion').style.display = 'block';
     gameOver();
   } else {
     nextDay();
