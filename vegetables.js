@@ -9,7 +9,7 @@ function getAllVegetables() {
       "firstAppear": true,
       "promises": [
         {
-          "text": "Rrrrh ! Le saligot qui va passer après moi me doit de la thune ! Mange le tiens ! Ça lui fera les graines",
+          "text": "Rrrrh ! Le saligot qui va passer après moi me doit de la thune ! Mange le, tiens ! Ça lui fera les graines",
           "sound": "banana-promise-1.mp3",
           "cond": {
             days: 1,
@@ -49,7 +49,7 @@ function getAllVegetables() {
       "firstAppear": true,
       "promises": [
         {
-          "text": "J’suis dans la sauce, je dois de la thune à la prochaine banane que tu vas voir. Si tu le vois, vends le, je ferais n’importe quoi. fait vite, tu as 3 jours !",
+          "text": "J’suis dans la sauce, je dois de la thune à la prochaine banane que tu vas voir. Si tu le vois, vends le, je ferais n’importe quoi. Fais vite, tu as 3 jours !",
           "sound": "carot-promise-1.mp3",
           "cond": {
             days: 3,
@@ -101,7 +101,7 @@ function getAllVegetables() {
           "punishment": -40
         },
         {
-          "text": "Ehh psss psss, tu aurais pas quelques pesos pour le prochain, je suis d’humour généreuse aujourd’hui",
+          "text": "Ehh psss psss, tu aurais pas quelques pesos pour le prochain, je suis d’humeur généreuse aujourd’hui",
           "sound": "pedro-promise-2.mp3",
           "cond": {
             days: 1,
