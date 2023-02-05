@@ -89,7 +89,7 @@ function getAllVegetables() {
       "firstAppear": true,
       "promises": [
         {
-          "text": "Ola seniorita, rend moi un service, mange le prochain comme moi, ça lui fera plaisir, je te laisse 72h",
+          "text": "Hola seniorita, rend moi un service, mange le prochain comme moi, ça lui fera plaisir, je te laisse 72h",
           "sound": "pedro-promise-1.mp3",
           "cond": {
             days: 3,
