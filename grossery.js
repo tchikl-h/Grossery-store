@@ -39,6 +39,7 @@ function main() {
 }
 
 async function start() {
+  selectCurrentVegetable();
   playAudio('music.wav', 0.05);
   displayMainButtons(true);
   playAudio('treadmill.mp3', 0.3);
@@ -72,10 +73,21 @@ function playVoice() {
 function init() {
   updateDate();
   generateWeekVegetables();
-  selectCurrentVegetable();
   setMoney(money, true);
   setMentalHealth(50, true);
   setHate(avgHate, true);
+  setInterval(() => {
+    const isLeft = getRandomInt(2) === 0;
+    const nbRnd = getRandomInt(7);
+    const id = `vegetable-background-${isLeft ? 'left' : 'right'}${nbRnd+1}`;
+    if (document.getElementById(id).style.visibility === 'visible') {
+      if (document.getElementById(id).src.indexOf('1.png') !== -1) {
+        document.getElementById(id).src = document.getElementById(id).src.replace('1.png', '2.png');
+      } else {
+        document.getElementById(id).src = document.getElementById(id).src.replace('2.png', '1.png');
+      }
+    }
+  }, 100)
 }
 
 async function endDay(idAction) {
@@ -355,16 +367,18 @@ async function kiwi() {
 // ____ SETTERS ___
 
 async function setHate(value, skip = false, idVegetablesTarget = null) {
-  let newHate = allVegetables.find(idVegetablesTarget !== null ? _vege=>_vege.id===idVegetablesTarget : findVege).hate;
-  console.log(`CURRENT HATE: ${newHate}`)
-  newHate += value;
-  if (newHate < 0) {
-    newHate = 0;
-  } else if (newHate > 100) {
-    newHate = 100;
+  if (!skip) {
+    let newHate = allVegetables.find(idVegetablesTarget !== null ? _vege=>_vege.id===idVegetablesTarget : findVege).hate;
+    console.log(`CURRENT HATE: ${newHate}`)
+    newHate += value;
+    if (newHate < 0) {
+      newHate = 0;
+    } else if (newHate > 100) {
+      newHate = 100;
+    }
+    console.log(`NEW HATE ${newHate}`);
+    allVegetables.find(idVegetablesTarget !== null ? _vege=>_vege.id===idVegetablesTarget : findVege).hate = newHate;
   }
-  console.log(`NEW HATE ${newHate}`);
-  allVegetables.find(idVegetablesTarget !== null ? _vege=>_vege.id===idVegetablesTarget : findVege).hate = newHate;
   const sum = allVegetables.filter(_vege=>_vege.maxAppears>1).map(_vege => _vege.hate).reduce((a, b) => a + b, 0);
   const newAvgHate = Math.round(sum / allVegetables.filter(_vege=>_vege.maxAppears>1).length);
   while (avgHate !== newAvgHate) {
