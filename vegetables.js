@@ -279,6 +279,7 @@ function getAllVegetables() {
         {
           "text": "J’ai besoin de votre soutien, je vous demande de m'élire premier fruitiste.",
           "sound": "melon-promise.mp3",
+          "cond": { days: 1 }
         }
       ],
       "intros": [
@@ -296,6 +297,7 @@ function getAllVegetables() {
         {
           "text": "Monsieur l’épicier, j’ai besoin de votre soutien financier pour un projet, lequel ? Eh bah j’vais vous le dire.",
           "sound": "kiwi-promise.mp3",
+          "cond": { days: 1 }
         }
       ],
       "intros": [

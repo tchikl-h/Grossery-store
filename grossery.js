@@ -27,6 +27,7 @@ let nbDays = 0;
 
 // audio
 let currentTalk = null;
+let currentInterval = null;
 
 // dialog
 let idxDialog = 0;
@@ -65,10 +66,6 @@ function playVoice() {
       displayDialog(_vege.intros[3]);
     }
   }
-}
-
-function playVoiceTalk(promise) {
-  playAudio(promise.sound, 1)
 }
 
 function init() {
@@ -246,7 +243,7 @@ function talk() {
   currentPromise = allVegetables.find(findVege).promises.shift();
   currentPromise['id_vege'] = currentVegetable.id;
   currentPromise.cond.days++;
-  playVoiceTalk(currentPromise);
+  playAudio(currentPromise.sound, 1)
   displayDialog(currentPromise.text);
   checkConditionPromise(3);
   displayPromiseButtons();
@@ -468,18 +465,28 @@ function getRandomInt(max) {
 function playAudio(name, volume) {
   if (volume === 1 && currentTalk) {
     currentTalk.pause();
+    if (currentInterval) {
+      clearInterval(currentInterval);
+      currentInterval = null;
+    }
+    currentStatAnim = 1;
+    isTalking = false;
+    document.getElementById('current-vegetable').src = `./assets/images/vegetables/${currentVegetable.srcImg}1.png`;
   }
   const audio = new Audio(`./assets/sounds/${name}`);
   audio.volume = volume;
   audio.play();
   if (volume === 1) {
     isTalking = true;
-    const interval = setInterval(() => {
+    currentInterval = setInterval(() => {
       currentStatAnim = (currentStatAnim === 1) ? 2 : 1;
       document.getElementById('current-vegetable').src = `./assets/images/vegetables/${currentVegetable.srcImg}${currentStatAnim}.png`;
     }, 200);
     audio.onended = function() {
-      clearInterval(interval);
+      if (currentInterval) {
+        clearInterval(currentInterval);
+        currentInterval = null;
+      }
       currentStatAnim = 1;
       isTalking = false;
       document.getElementById('current-vegetable').src = `./assets/images/vegetables/${currentVegetable.srcImg}1.png`;
