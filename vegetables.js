@@ -32,6 +32,12 @@ function getAllVegetables() {
           "reward": 30,
           "punishment": -15
         }
+      ],
+      "intros": [
+        "Moi j'ai la banane tous les jours !",
+        "Dans la vie y a ceux qui une banane et y a ceux qui creusent, et nous deux, on a la banane.",
+        "Les singes mangent des bananes, mais moi je mange les singes, alors fait gaffe à ce que tu fais.",
+        "Si tu continues de me chercher des noises, je t'épluches."
       ]
     },
     {
@@ -66,6 +72,12 @@ function getAllVegetables() {
           "reward": 35,
           "punishment": -30
         }
+      ],
+      "intros": [
+        "J'entends des noix dans ma tête, s'il te plait soit gentil avec moi.",
+        "J'te donne une info comme ça mais, la NASA nous surveille fait gaffe à toi.",
+        "Être ou ne pas être, de tout façon, on va tous crever !",
+        "Fait gaffe à ce que tu vas faire parce que avec moi les carottes seront cuites !",
       ]
     },
     {
@@ -100,6 +112,12 @@ function getAllVegetables() {
           "reward": 10,
           "punishment": -10
         }
+      ],
+      "intros": [
+        "Bonjour, je m'appelle Pedro, je suis un expert en moustache.. Et en plaisir *bise platonique*",
+        "Toi je t'ai à la bonne, toi et moi c'est pour la vie.",
+        "Ayy tu me plais mais j'ai déjà vu bien plus beau que toi.",
+        "Toi gringo tu ne fais carrément pas parti de mes amigos !",
       ]
     },
     {
@@ -134,6 +152,12 @@ function getAllVegetables() {
           "reward": 15,
           "punishment": -20
         }
+      ],
+      "intros": [
+        "Je je.. J'crois que je me sens pas bien mec.",
+        "Faudrait pas que je te demande ça mon pote mais, t'aurais pas un petit bout pour moi s'il te plait.",
+        "Ça.. Ça va pas bien dans ma tête.",
+        "Fait gaffe mec, c'est pas parce que j'suis défoncé que je peux pas te défoncer !",
       ]
     },
     {
@@ -152,6 +176,9 @@ function getAllVegetables() {
           "reward": 15,
           "punishment": -20
         }
+      ],
+      "intros": [
+        "Bonjour, c'est Framboise Hollande. Ça me fait très plaisir d'être avec vous aujourd'hui.",
       ]
     },
     {
@@ -170,6 +197,9 @@ function getAllVegetables() {
           "reward": 15,
           "punishment": -20
         }
+      ],
+      "intros": [
+        "Ouuh, hello darling, c'est Pamela Andreson.",
       ]
     },
     {
@@ -188,6 +218,9 @@ function getAllVegetables() {
           "reward": 15,
           "punishment": -20
         }
+      ],
+      "intros": [
+        "Aqueros mountagnos. Que tan hautes soun",
       ]
     },
     {
@@ -206,6 +239,9 @@ function getAllVegetables() {
           "reward": 15,
           "punishment": -20
         }
+      ],
+      "intros": [
+        "Bonjour l'épicerie.",
       ]
     },
     {
@@ -224,6 +260,9 @@ function getAllVegetables() {
           "reward": 15,
           "punishment": -20
         }
+      ],
+      "intros": [
+        "*rire* Le bonjour du chou.",
       ]
     }
   ];
